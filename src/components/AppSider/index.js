@@ -24,11 +24,11 @@ const AppSider = ({layOutStore, userStore}) => {
   const { menuStatus,  defaultSettings:{ navTheme }, activeArr} = layOutStore;
   const barConfig = [
     {
-      link:'/admin/List',
+      link:'/admin/list',
       label:'123XXX管理',
       permissionKey: '',
       icon: 'xxxx',
-      highlightRoute:['/admin/List'],
+      highlightRoute:['/admin/list'],
       child: []
     }
   ];
