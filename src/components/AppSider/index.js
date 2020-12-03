@@ -3,14 +3,17 @@ import { inject, observer } from 'mobx-react';
 import { Layout, Menu, Modal } from 'antd';
 // import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 // import { withRouter } from 'react-router-dom';
-import { IconfontCN, history } from 'common/util';
+import { 
+  // IconfontCN,
+   history } from 'common/util';
+import { TeamOutlined } from '@ant-design/icons';
 
 import styles from './index.module.less';
 import logo from 'imgs/AppSider/logo.png';
 
 // import * as store from "store";
 
-const IconFont = IconfontCN();
+// const IconFont = IconfontCN();
 
 const { SubMenu } = Menu;
 const { Sider } = Layout;
@@ -22,8 +25,8 @@ const AppSider = ({layOutStore, userStore}) => {
   const barConfig = [
     {
       link:'/admin/List',
-      label:'XXX管理',
-      permissionKey: 'HTGL01',
+      label:'123XXX管理',
+      permissionKey: '',
       icon: 'xxxx',
       highlightRoute:['/admin/List'],
       child: []
@@ -108,7 +111,8 @@ const AppSider = ({layOutStore, userStore}) => {
              ? <img className={styles.logoImgClose} src={logo} alt=""/> :
            <>
              <img className={styles.logoImg} src={logo} alt=""/>
-             <IconFont type="iconzhongqinggongjijinkuomianzhinengjuecexitong" className={styles.second} />
+             <span>XXXX管理平台</span>
+             {/* <IconFont type="iconzhongqinggongjijinkuomianzhinengjuecexitong" className={styles.second} /> */}
            </>
          }
        </div>
@@ -128,7 +132,8 @@ const AppSider = ({layOutStore, userStore}) => {
                        menuClick(Item)
                      }}
                  >
-                   <IconFont type={barItem.icon} />
+                   {/* <IconFont type={barItem.icon} /> */}
+                   <TeamOutlined />
                    <span>{barItem.label}</span>
                  </Menu.Item>
              )
@@ -140,7 +145,8 @@ const AppSider = ({layOutStore, userStore}) => {
                      key={barItem.link}
                      title={
                        <span>
-                   <IconFont type={barItem && barItem.icon} />
+                   {/* <IconFont type={barItem && barItem.icon} /> */}
+                   <TeamOutlined />
                    <span>{barItem.label}</span>
                  </span>
                      }
@@ -152,7 +158,9 @@ const AppSider = ({layOutStore, userStore}) => {
                            childMenuClick(item)
                          }}
                      >
-                       <IconFont type={childItem && childItem.icon} />
+                       {/* <IconFont type={childItem && childItem.icon} />
+                        */}
+                        <TeamOutlined  />
                        <span>{childItem.label}</span>
                      </Menu.Item>
                      return renderWithAuth(childItem.permissionKey, menuItemChild);
