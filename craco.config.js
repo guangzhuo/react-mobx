@@ -30,6 +30,7 @@ module.exports = {
     alias: {
       '@': pathResolve('.'),
       src: pathResolve('src'),
+      common: pathResolve('src/common'),
     },
     
     plugins: [
