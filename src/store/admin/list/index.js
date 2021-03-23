@@ -1,8 +1,5 @@
-import {observable, action, } from 'mobx';
-// import { message } from 'antd';
-import { setPathValue, 
-  // getPathValue 
-} from 'pathval';
+import {observable, action} from 'mobx';
+import { setPathValue } from 'pathval';
 // import modalStore from 'stores/common/modalComponent';
 // import * as APIS from 'apis';
 // import md5 from 'crypto-js/md5';
