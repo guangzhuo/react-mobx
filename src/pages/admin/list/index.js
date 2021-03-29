@@ -406,7 +406,7 @@ function BSUserList ({ listStore, userStore }) {
                 listStore.setValue('pagination.index', current);
                 listStore.setValue('pagination.size', pageSize);
                 // 重新获取数据
-                // pushURL()
+                // pushURL();
                 listStore.getListData();
               }}
             />
