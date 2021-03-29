@@ -79,7 +79,7 @@ module.exports = {
     // 禁止覆盖受限制的标识符
     'no-shadow-restricted-names': 2,
     // 不能有未定义的变量
-    'no-undef': 0,
+    'no-undef': 1,
     // 禁止将变量初始化为 undefined
     'no-undef-init': 2,
     // 禁止将 undefined 作为标识符
