@@ -5,13 +5,12 @@ import { Breadcrumb } from 'antd';
 import styles from './index.module.less';
 
 
-
 class Maintitle extends Component {
-  componentDidMount() {
+  componentDidMount () {
 
   }
 
-  render() {
+  render () {
     const { items } = this.props
     return (
       <div className={styles.mainTitle}>

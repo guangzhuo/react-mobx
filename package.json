@@ -11,7 +11,7 @@
     "@testing-library/user-event": "7.1.2",
     "antd": "4.6.4",
     "axios": "0.20.0",
-    "babel-plugin-styled-components": "^1.12.0",
+    "babel-plugin-styled-components": "1.12.0",
     "circular-dependency-plugin": "^5.2.2",
     "core-js": "3.7.0",
     "craco-antd": "1.18.1",
@@ -19,8 +19,8 @@
     "craco-vtk": "1.0.2",
     "cross-env": "7.0.2",
     "history": "4.10.1",
-    "less": "^3.12.2",
-    "less-loader": "^7.1.0",
+    "less": "3.12.2",
+    "less-loader": "7.1.0",
     "mobx": "4.15.7",
     "mobx-react": "6.0.0",
     "moment": "2.29.1",
@@ -33,7 +33,7 @@
     "react-scripts": "4.0.3",
     "simple-progress-webpack-plugin": "1.1.2",
     "uuid": "8.3.0",
-    "webpackbar": "^5.0.0-3"
+    "webpackbar": "5.0.0-3"
   },
   "scripts": {
     "start": "cross-env REACT_APP_ENV=development craco start",
@@ -61,18 +61,19 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "7.10.5",
-    "babel-eslint": "^10.1.0",
+    "babel-eslint": "10.1.0",
     "babel-plugin-import": "1.13.0",
     "compression-webpack-plugin": "6.0.1",
     "craco-alias": "2.1.1",
-    "eslint": "7.23.0",
+    "eslint": "^7.23.0",
     "eslint-config-airbnb": "18.2.1",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-jsx-a11y": "6.4.1",
     "eslint-plugin-prettier": "3.3.1",
-    "eslint-plugin-react": "^7.23.1",
+    "eslint-plugin-react": "7.23.1",
     "eslint-plugin-react-hooks": "4.2.0",
-    "http-proxy-middleware": "1.0.5"
+    "http-proxy-middleware": "1.0.5",
+    "pre-commit": "1.2.2"
   }
 }

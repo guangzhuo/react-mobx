@@ -3,7 +3,7 @@ import { Load } from 'components'
 import { Route } from 'react-router-dom'
 
 const getRoutes = (routeArr) => (
-  routeArr.map(item => (
+  routeArr.map((item) => (
     <Route exact key={item.path} {...item} />
   ))
 )

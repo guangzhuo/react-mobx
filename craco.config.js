@@ -21,6 +21,7 @@ const CircularDependencyPlugin = require('circular-dependency-plugin')
 // const CracoAntPlugin = require('craco-antd')
 // const path = require('path')
 const pathResolve = (pathUrl) => path.join(__dirname, pathUrl)
+
 // 自定义主题
 module.exports = {
   webpack: {
@@ -107,6 +108,7 @@ module.exports = {
         }
       }
     },
+
     /**
      * 重写 webpack 任意配置
      *  - configure 能够重写 webpack 相关的所有配置，但是，仍然推荐你优先阅读 craco 提供的快捷配置，把解决不了的配置放到 configure 里解决；
@@ -130,6 +132,7 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'), // 修改输出文件目录
         publicPath: '/'
       }
+
       /**
          * webpack split chunks
          */
@@ -188,7 +191,7 @@ module.exports = {
         lessLoaderOptions: {
           lessOptions: { javascriptEnabled: true }
         },
-        modifyLessRule() {
+        modifyLessRule () {
           return {
             test: /\.module\.less$/,
             exclude: /node_modules/,

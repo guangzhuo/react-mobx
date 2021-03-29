@@ -3,12 +3,12 @@ import styles from './index.module.less';
 
 
 class TableWrap extends Component {
-  componentDidMount() {
+  componentDidMount () {
 
   }
 
 
-  render() {
+  render () {
     const {rightSlot, children} = this.props
     return (
       <div className={styles.TableWrap}>

@@ -10,12 +10,12 @@ const u = window.navigator.userAgent.toLocaleLowerCase();
 const ie11 = /(trident)\/([\d.]+)/;
 const b = u.match(ie11);  // 判断ie11
 ins.interceptors.request.use(
-  axiosConfig => {
+  (axiosConfig) => {
     localStorage.setItem('axiosindex', 1);
     axiosConfig.headers['scf-source'] = 'XXX';
     axiosConfig.headers['Cache-Control'] = 'no-cache';
-  
-  
+
+
     // IE11 接口缓存问题
     if (b && axiosConfig.method === 'get') {
       if (axiosConfig.params) {
@@ -31,21 +31,18 @@ ins.interceptors.request.use(
     return axiosConfig;
   },
   // 请求 URL: http://localhost:3020/api/finance/user/checkCompanyRegion?nsrsbh=91340600MA2MQMC922&productId=150?randomDate=0.4857513726232369
-  error => {
+  (error) => {
     console.log('request error', error);
   }
 )
 
-ins.interceptors.response.use((response) => {
-  
-  return response
-}, (error) => {
+ins.interceptors.response.use((response) => response, (error) => {
   console.log(error.response)
   const {status, headers} = error.response
-  if(status && status === 401) {
+  if (status && status === 401) {
     const {location} = headers
     // ${encodeURIComponent(window.location.href)}
-    if(location) window.location.href = `${location}`
+    if (location) {window.location.href = `${location}`}
     return false
   }
   // Do something with request error
@@ -53,7 +50,7 @@ ins.interceptors.response.use((response) => {
     return Promise.reject(error);
   }
   // const code = getPathValue(error, 'response.data.code');
-  
+
   // const numIndex = localStorage.getItem('axiosindex');
   // localStorage.setItem('axiosindex', numIndex + 1);
   return Promise.reject(error);

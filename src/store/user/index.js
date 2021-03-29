@@ -1,31 +1,31 @@
 import { observable, action } from 'mobx'
-import {setPathValue} from "pathval";
+import {setPathValue} from 'pathval';
 
 class UseStore {
- 
+
   @observable userInfo = {}
-  
-  
+
+
   @observable toHref = ''
 
   // constructor() {
   //   makeAutoObservable(this)
   // }
-  
-  
-  @action.bound setValue(path, value) {
+
+
+  @action.bound setValue (path, value) {
     setPathValue(this, path, value);
   }
 
   @action.bound
-  hasAuth(permissionKey) {
+  hasAuth (permissionKey) {
     const permissions = this.userInfo.permissions || {};
     return !permissionKey || permissions[permissionKey] || permissionKey === 'HX_ADMIN';
   }
 
   // 权限
   @action.bound
-  renderWithAuth(permissionKey, renderElement) {
+  renderWithAuth (permissionKey, renderElement) {
     const user_Permissions = this.userInfo.permissions || {};
     console.log(this)
     // console.log(UseStore)
