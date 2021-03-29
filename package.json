@@ -42,11 +42,15 @@
     "build:pre": "cross-env REACT_APP_ENV=preissue GENERATE_SOURCEMAP=false craco build",
     "build:pro": "cross-env REACT_APP_ENV=production GENERATE_SOURCEMAP=false craco build",
     "test": "cross-env REACT_APP_ENV=test craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint --ext .js --ext .jsx src"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
+  "pre-commit": [
+    "lint"
+  ],
   "browserslist": {
     "production": [
       ">0.2%",
@@ -73,6 +77,7 @@
     "eslint-plugin-prettier": "3.3.1",
     "eslint-plugin-react": "7.23.1",
     "eslint-plugin-react-hooks": "4.2.0",
-    "http-proxy-middleware": "1.0.5"
+    "http-proxy-middleware": "1.0.5",
+    "pre-commit": "^1.2.2"
   }
 }

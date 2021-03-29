@@ -79,7 +79,7 @@ module.exports = {
     // 禁止覆盖受限制的标识符
     'no-shadow-restricted-names': 2,
     // 不能有未定义的变量
-    'no-undef': 1,
+    'no-undef': 0,
     // 禁止将变量初始化为 undefined
     'no-undef-init': 2,
     // 禁止将 undefined 作为标识符
@@ -326,7 +326,7 @@ module.exports = {
     }],
     // 在数组或迭代器中验证JSX具有key属性
     'react/jsx-key': 2,
-    'react/display-name': 1,
+    'react/display-name': 0,
     // 限制JSX中单行上的props的最大数量
     'react/jsx-max-props-per-line': [1, {
       'maximum': 5
@@ -352,7 +352,7 @@ module.exports = {
     // 为React组件强制执行ES5或ES6类
     'react/prefer-es6-class': 2,
     // 防止在React组件定义中丢失props验证
-    'react/prop-types': 1,
+    'react/prop-types': 0,
     // 使用JSX时防止丢失React
     'react/react-in-jsx-scope': 2,
     // 防止没有children的组件的额外结束标签
