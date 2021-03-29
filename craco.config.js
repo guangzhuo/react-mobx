@@ -6,13 +6,15 @@
  * - whenProd ☞ process.env.NODE_ENV === 'production'
  */
 // when, whenProd, whenTest, ESLINT_MODES, POSTCSS_MODES
-const { whenDev } = require('@craco/craco')
+const { whenDev, when } = require('@craco/craco')
 const CracoLessPlugin = require('craco-less')
 const CracoVtkPlugin = require('craco-vtk')
 const CracoAntDesignPlugin = require('craco-antd')
 const path = require('path')
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const webpack = require('webpack');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
 // const reactHotReloadPlugin = require('craco-plugin-react-hot-reload')
 // const CracoAliasPlugin = require('craco-alias')
 const SimpleProgressWebpackPlugin = require('simple-progress-webpack-plugin')
@@ -21,7 +23,8 @@ const CircularDependencyPlugin = require('circular-dependency-plugin')
 // const CracoAntPlugin = require('craco-antd')
 // const path = require('path')
 const pathResolve = (pathUrl) => path.join(__dirname, pathUrl)
-
+// 判断编译环境是否为生产
+const isBuildAnalyzer = process.env.REACT_APP_ENV === 'development'
 // 自定义主题
 module.exports = {
   webpack: {
@@ -36,11 +39,11 @@ module.exports = {
 
       // webpack构建进度条
       // new WebpackBar({
-      //   profile: true
+      //   profile: trueDllPlugin
       // }),
       new SimpleProgressWebpackPlugin(),
       new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /zh-cn/),
-
+      new AntdDayjsWebpackPlugin(),
       // // 新增模块循环依赖检测插件
       ...whenDev(
         () => [
@@ -50,13 +53,21 @@ module.exports = {
             failOnError: true,
             allowAsyncCycles: false,
             cwd: process.cwd()
-          })
+          }),
           // webpack-dev-server 强化插件
           // new DashboardPlugin(),
           // new webpack.HotModuleReplacementPlugin()
         ], []
       ),
-
+      ...when(
+        isBuildAnalyzer, () => [
+          new BundleAnalyzerPlugin({
+            analyzerMode: 'static', // html 文件方式输出编译分析
+            openAnalyzer: false,
+            reportFilename: path.resolve(__dirname, 'analyzer/index.html')
+          })
+        ], []
+      ),
       new CompressionWebpackPlugin({
         filename: '[path][base].gz',
         algorithm: 'gzip',
@@ -169,7 +180,7 @@ module.exports = {
     plugins: [
       ['import', {
         libraryName: 'antd',
-        libraryDirectory: 'es',
+        libraryDirectory: 'lib',
         style: true
       }, 'antd'],
       // 配置解析器
@@ -218,16 +229,16 @@ module.exports = {
       options: { customizeThemeLessPath: path.join(__dirname, 'src/theme/antd.customize.less') }
     }
 
-    // 别名
-    // {
-    //   plugin: CracoAliasPlugin,
-    //   options: {
-    //     source: "options",
-    //     baseUrl: "./",
-    //     aliases: {
-    //       '@': './src'
-    //     }
-    //   }
-    // },
-  ]
+  ],
+  devServer: {
+    port: 9000,
+    proxy: {
+      '/api': {
+        target: 'https://XXX.com/',
+        changeOrigin: true,
+        secure: false,
+        xfwd: false,
+      }
+    }
+  }
 }

@@ -6,15 +6,15 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from 'mobx-react';
 import * as store from './store';
 // import axios from 'axios';
-import {ConfigProvider,
-  // message
-} from 'antd';
+import {ConfigProvider} from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
-import moment from 'moment';
-import 'moment/locale/zh-cn';
+import dayjs from 'dayjs';
+// import moment from 'moment';
+// import 'moment/locale/zh-cn';
+import 'dayjs/locale/zh-cn'
 // import {login} from 'apis';
 // import {userStore} from './store/index'
-moment.locale('zh-cn');
+dayjs.locale('zh-cn')
 
 
 // const renderDOM = () => {
