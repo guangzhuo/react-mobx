@@ -418,7 +418,7 @@ function BSUserList({ listStore, userStore }){
               total={pagination.total}
               pageSize={pagination.size}
               current={pagination.index}
-              onChange={(pagination, filters, sorter, extra) => {
+              onChange={(pagination) => {
                 const {current, pageSize } = pagination
                // 设置当前页
                 listStore.setValue('pagination.index', current);

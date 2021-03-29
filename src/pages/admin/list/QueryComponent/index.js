@@ -1,7 +1,5 @@
 import React from 'react';
-import { Input, Button, Select, Row, Col, Form,
-  // Icon,
-  DatePicker } from 'antd';
+import { Input, Button, Select, Row, Col, Form, DatePicker } from 'antd';
 import { observer, inject } from 'mobx-react';
 // import { toJS } from 'mobx';
 import moment from "moment";
@@ -213,6 +211,6 @@ function QueryComponent({  listStore }) {
 
     </Form>
   );
-};
+}
 
 export default inject('listStore')(observer(QueryComponent));

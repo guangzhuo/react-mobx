@@ -20,7 +20,7 @@ const CommonTable = (props) =>  {
                  total: total,
                  pageSize: pageSize,
                  current: current,
-                 showTotal:(total, range) => `共${total}条记录 第${current}/${Math.ceil(total/pageSize)}页`
+                 showTotal:(total) => `共${total}条记录 第${current}/${Math.ceil(total/pageSize)}页`
             }}
         />
     );

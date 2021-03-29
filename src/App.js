@@ -8,8 +8,8 @@ import { history } from 'common/util'
 const { Content } = Layout;
 
 
-
-const App = ({userStore}) => {
+// userStore
+const App = () => {
   const toRedirect = () => {
     // 权限
     // const mapList = {

@@ -1,10 +1,7 @@
 module.exports = {
     "env": {
-      "node": true,
-      "browser": true,
-      "commonjs": true,
-      "amd": true,
-      "es6": true
+        "browser": true,
+        "es6": true
     },
     "extends": "eslint:recommended",
     "globals": {
@@ -21,7 +18,6 @@ module.exports = {
     "plugins": [
         "react"
     ],
-    "parser": "babel-eslint",
     "rules": {
     }
 };
