@@ -22,7 +22,9 @@ module.exports = {
     'WeixinJSBridge': true,
     'wx': true,
     'process': true,
-    'qq': true
+    'qq': true,
+    'require': true,
+    'module': true
   },
   'parserOptions': {
     'ecmaFeatures': {
@@ -369,6 +371,6 @@ module.exports = {
       'extensions': ['.js', '.jsx']
     }],
     // 禁止未使用的变量
-    'no-unused-vars': 0,
+    'no-unused-vars': 2,
   }
 };

@@ -17,8 +17,6 @@ import {treeDataFormate} from 'common/util';
 import styles from './index.module.less';
 
 const { Search } = Input;
-// const { TreeNode } = Tree;
-
 const BreadcrumbData = [
   { href: '', name: 'XXXXXX系统', id: 1 },
   { href: '/admin/backstageUserList', name: 'XXX管理', id: 2 },
