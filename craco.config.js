@@ -12,7 +12,7 @@ const CracoVtkPlugin = require('craco-vtk')
 const CracoAntDesignPlugin = require('craco-antd')
 const path = require('path')
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
-// const webpack = require('webpack')
+const webpack = require('webpack');
 // const reactHotReloadPlugin = require('craco-plugin-react-hot-reload')
 // const CracoAliasPlugin = require('craco-alias')
 const SimpleProgressWebpackPlugin = require('simple-progress-webpack-plugin')
@@ -39,6 +39,7 @@ module.exports = {
       //   profile: true
       // }),
       new SimpleProgressWebpackPlugin(),
+      new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /zh-cn/),
 
       // // 新增模块循环依赖检测插件
       ...whenDev(
