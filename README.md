@@ -68,6 +68,7 @@ production | 生产
 
 ## 注意事项 ！！！
 - 开启eslint: 保持代码统一规范，加入了pre-commit;
+- 开发环境默认把分析目录输出到根目录下analyzer，可做分析
 - 创建less规范：**.module.less 开启css module;
 - 书写组件：保持大写开头，如：Modal;
 - store: 保持逻辑层 尽量统一到Mobx处理;
