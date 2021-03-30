@@ -145,6 +145,12 @@ module.exports = {
         publicPath: '/'
       }
 
+      // 忽略打包
+      // webpackConfig.externals = {
+      //   'react': 'React',
+      //   'react-dom': 'ReactDOM',
+      // }
+
       /**
          * webpack split chunks
          */
