@@ -3,7 +3,7 @@ import { observer, inject } from 'mobx-react';
 import { Input, Tree, Tooltip, Modal, Form, Button, Space, Badge } from 'antd';
 import { PlusOutlined, FormOutlined, CloseOutlined, ExclamationCircleOutlined  } from '@ant-design/icons';
 import { toJS } from 'mobx';
-import MainTitle from 'components/mainTitle';
+import MainTitle from 'components/MainTitle';
 import KeyWordsWrap from 'components/KeyWordsWrap';
 import TableWrap from 'components/TableWrap';
 import CommonTable from 'components/CommonTable';

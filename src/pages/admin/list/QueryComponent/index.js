@@ -4,7 +4,7 @@ import { observer, inject } from 'mobx-react';
 // import { toJS } from 'mobx';
 import moment from 'moment';
 import styles from './index.module.less';
-import validator from 'common/util/validator';
+import {isMobile} from 'common/util';
 
 
 const { Option } = Select;
@@ -46,7 +46,7 @@ function QueryComponent ({  listStore }) {
 
   const validatorPhone = (rule, value, callback) => {
     if (value) {
-      const { isMobile } = validator
+      // const { isMobile } = validator
       const msg = isMobile(value, { msg: '请输入正确的手机格式' })
       if (msg) {
         callback(true);
@@ -65,10 +65,6 @@ function QueryComponent ({  listStore }) {
             {...formItemLayout}
             label="账号"
             name='account'
-            // initialValue={queryData.account || undefined}
-            // rules={[{
-            //   validator: validatorPhone, message: '请输入正确格式的账号'
-            //   }]}
           >
             <Input placeholder="请输入账号" />
           </Form.Item>
