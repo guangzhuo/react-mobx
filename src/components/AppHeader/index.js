@@ -5,7 +5,7 @@ import { Layout } from 'antd';
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import { withRouter } from 'react-router-dom';
 import moment from 'moment';
-import horn from 'imgs/AppSider/horn.png';
+import horn from 'images/AppSider/horn.png';
 import styles from './index.module.less';
 
 const { Header } = Layout;

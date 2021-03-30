@@ -7,7 +7,7 @@ import { history } from 'common/util';
 import { TeamOutlined } from '@ant-design/icons';
 
 import styles from './index.module.less';
-import logo from 'imgs/AppSider/logo.png';
+import logo from 'images/AppSider/logo.png';
 
 // import * as store from "store";
 
