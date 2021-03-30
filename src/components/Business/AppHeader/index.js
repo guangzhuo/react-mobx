@@ -51,6 +51,4 @@ const AppHeader = ({userStore, layOutStore}) => {
     </div>
   );
 }
-// inject('userStore', 'layOutStore')
-// (observer(()))
 export default withRouter(inject('userStore', 'layOutStore')(observer(AppHeader)));

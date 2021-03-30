@@ -1,8 +1,8 @@
-import AppSider from './AppSider'
-import HeaderTitle from './HeaderTitle'
-import AppHeader from './AppHeader'
+import AppSider from './Business/AppSider'
+import HeaderTitle from './UI/HeaderTitle'
+import AppHeader from './Business/AppHeader'
 
-export * from './Loadable'
+export * from './Business/Loadable'
 
 export {
   AppSider,
