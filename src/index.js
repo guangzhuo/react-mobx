@@ -5,45 +5,11 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'mobx-react';
 import * as store from './store';
-// import axios from 'axios';
 import {ConfigProvider} from 'antd';
 import zhCN from 'antd/es/locale/zh_CN';
 import dayjs from 'dayjs';
-// import moment from 'moment';
-// import 'moment/locale/zh-cn';
 import 'dayjs/locale/zh-cn'
-// import {login} from 'apis';
-// import {userStore} from './store/index'
 dayjs.locale('zh-cn')
-
-
-// const renderDOM = () => {
-//   return ReactDOM.render(
-//     <Provider {...store}>
-//       <ConfigProvider locale={zhCN}>
-//         <App />
-//       </ConfigProvider>
-//     </Provider>,
-//     document.getElementById('root')
-//   );
-// }
-
-// login()
-// .then((res) => {
-//   const {data} = res.data
-//   // data.userPermission = {
-//   //   HTGL01: true,
-//   // }
-//   // userStore.setValue('userInfo', data)
-//   renderDOM()
-// }).catch((error) => {
-//   // test
-//   const data = {
-//     userPermission:{HTGL01: true}
-//   }
-//   userStore.setValue('userInfo', data)
-//   if(error.response) message.error(error.response.data.message);
-// })
 
 
 ReactDOM.render(
