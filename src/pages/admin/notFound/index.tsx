@@ -4,6 +4,9 @@ import notFound from 'images/notFound/notFound.png';
 import styles from './index.module.less';
 
 const NotFound:FC = () => (
+
+    
+
   <div className={styles.notFound}>
     <div className={styles.imgWrap}>
       <img src={notFound} className={styles.notImg} alt='您访问的页面未授权' />
