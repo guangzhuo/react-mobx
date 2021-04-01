@@ -38,7 +38,7 @@ class LayOutStore {
 	// @observable menuTheme = 'dark'; // 侧边栏主题
 
 
-	@action.bound setValue (path, value) {
+	@action.bound setValue (path: string, value: any) {
 		setPathValue(this, path, value);
 	}
 
@@ -53,7 +53,7 @@ class LayOutStore {
 		this.menuStatus = true
 	}
 	// 初始化时-侧边栏扩大功能
-	@action.bound toggleShowSiber (collapsed, type) {
+	@action.bound toggleShowSiber (collapsed: any, type: any) {
 		console.log(type)
 		if (collapsed) {
 			this.menuStatus = true

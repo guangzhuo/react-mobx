@@ -1,10 +1,15 @@
 import React from 'react';
 import { Table } from 'antd';
-
 import styles from './index.module.less'
 
-
-const CommonTable = (props) =>  {
+interface Iprops {
+  total: number,
+  current: number,
+  pageSize: number,
+  isBorder?: boolean,
+  [key:string]: any
+}
+const CommonTable = (props:Iprops) =>  {
   // console.log(props)
   const {total, current, pageSize, isBorder} = props
   return (
@@ -23,12 +28,6 @@ const CommonTable = (props) =>  {
       }}
     />
   );
-}
-
-React.defaultProps = {
-  total: 0,
-  current: 1,
-  pageSize: 10
 }
 
 export default CommonTable;

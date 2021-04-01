@@ -1,5 +1,5 @@
 module.exports = {
-  'parser': 'babel-eslint',
+  'parser': '@typescript-eslint/parser',
   'env': {
     'browser': true,
     'es6': true
@@ -368,7 +368,7 @@ module.exports = {
     // 在JSX属性中强制或禁止等号周围的空格
     'react/jsx-equals-spacing': 2,
     'react/jsx-filename-extension': [2, {
-      'extensions': ['.js', '.jsx']
+      'extensions': ['.js', '.jsx', 'tsx']
     }],
     // 禁止未使用的变量
     'no-unused-vars': 2,

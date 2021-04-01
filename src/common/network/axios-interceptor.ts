@@ -11,7 +11,7 @@ const ie11 = /(trident)\/([\d.]+)/;
 const b = u.match(ie11);  // 判断ie11
 ins.interceptors.request.use(
   (axiosConfig) => {
-    localStorage.setItem('axiosindex', 1);
+    localStorage.setItem('axiosindex', '1');
     axiosConfig.headers['scf-source'] = 'XXX';
     axiosConfig.headers['Cache-Control'] = 'no-cache';
 
@@ -21,7 +21,7 @@ ins.interceptors.request.use(
       if (axiosConfig.params) {
         axiosConfig.params['randomDate'] = Math.random();
       } else {
-        if (axiosConfig.url.includes('?')) {
+        if (axiosConfig.url?.includes('?')) {
           axiosConfig.url = `${axiosConfig.url}&randomDate=${Math.random()}`
         } else {
           axiosConfig.url = `${axiosConfig.url}?randomDate=${Math.random()}`
@@ -51,8 +51,8 @@ ins.interceptors.response.use((response) => response, (error) => {
   }
   // const code = getPathValue(error, 'response.data.code');
 
-  // const numIndex = localStorage.getItem('axiosindex');
-  // localStorage.setItem('axiosindex', numIndex + 1);
+  const numIndex: number = JSON.parse(localStorage.getItem('axiosindex') || '{}');
+  localStorage.setItem('axiosindex', `${numIndex + 1}`);
   return Promise.reject(error);
 })
 

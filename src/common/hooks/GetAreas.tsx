@@ -2,7 +2,8 @@ import {useState, useEffect} from 'react';
 import { message } from 'antd';
 import * as APIS from 'common/apis'
 
-const GetAreas = (dep) => {
+
+const GetAreas = (dep:string) => {
 
   const [areaData, setAreaData] = useState(null)
 

@@ -1,3 +1,4 @@
+import React from 'react';
 import { createFromIconfontCN } from '@ant-design/icons';
 import { createBrowserHistory, createMemoryHistory } from 'history';
 
@@ -11,15 +12,30 @@ const history = (typeof window !== 'undefined'
   ? createBrowserHistory()
   : createMemoryHistory());
 
+
+interface IUser{
+  children?: any;
+  id?: string,
+  name?: string,
+  key?: string,
+  title?: string,
+  value?: string,
+  // children?: Array<T>[]
+}
+
+
 // 针对treeData 返回数据格式
-const treeDataFormate = (data, fn, saveCall) => {
+const treeDataFormate = (data: Array<IUser>[], fn: () => (React.ReactNode | string), saveCall: any) => {
   const callBack = typeof fn === 'function' ? fn : saveCall
-  return data && data.map((item) => {
+  // @ts-ignore
+  return data && data.map((item:IUser) => {
     item.key = item.id;
     item.title = callBack ? callBack(item) : `${item.name}`;
     item.value = item.id;
     // item.disableCheckbox = false;
-    if (item.children && item.children.length) {item.children = treeDataFormate(item.children, callBack && callBack(item), callBack);}
+    if (item.children && item.children.length) {
+      item.children = treeDataFormate(item.children, callBack && callBack(item), callBack);
+    }
     return item;
   })
 }

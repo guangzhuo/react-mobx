@@ -21,11 +21,11 @@
 │   ├── App.js 
 │   ├── common // 全局配置文件
 │   │   ├── apis // 接口地址
-│   │   │   └── index.js
+│   │   │   └── index.ts
 │   │   ├── hooks // 自定义hooks
 │   │   │   └── index.js
 │   │   ├── network // 拦截器配置
-│   │   │   └── axios-interceptor.js
+│   │   │   └── axios-interceptor.ts
 │   │   └── util // 公用方法
 │   │       └── index.js    
 │   ├── components 

@@ -1,16 +1,31 @@
 import React from 'react';
-import { observer, inject} from 'mobx-react';
+import { observer, inject, IReactComponent  } from 'mobx-react';
 // import { toJS } from 'mobx';
 import { Layout } from 'antd';
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
-import { withRouter } from 'react-router-dom';
+// import { withRouter } from 'react-router-dom';
 import moment from 'moment';
 import horn from 'images/AppSider/horn.png';
 import styles from './index.module.less';
 
 const { Header } = Layout;
 
-const AppHeader = ({userStore, layOutStore}) => {
+interface IUser {
+  name: string
+  lastLoginTs: string
+}
+
+interface ILayOutStore {
+  menuStatus: boolean
+  toggleSiber(): () => void
+}
+
+interface Iprops {
+  userStore: IReactComponent & {userInfo: IUser},
+  layOutStore:IReactComponent & ILayOutStore
+}
+
+const AppHeader = ({userStore, layOutStore}:Iprops) => {
   // const {layOutStore, userStore } = useContext(MobXProviderContext);
   const {menuStatus} = layOutStore
   const {userInfo} = userStore
@@ -51,4 +66,4 @@ const AppHeader = ({userStore, layOutStore}) => {
     </div>
   );
 }
-export default withRouter(inject('userStore', 'layOutStore')(observer(AppHeader)));
+export default inject('userStore', 'layOutStore')(observer(AppHeader));

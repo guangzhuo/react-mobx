@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { observer, inject } from 'mobx-react';
+import { observer, inject} from 'mobx-react';
 import { Input, Tree, Tooltip, Modal, Form, Button, Space, Badge } from 'antd';
 import { PlusOutlined, FormOutlined, CloseOutlined, ExclamationCircleOutlined  } from '@ant-design/icons';
 import { toJS } from 'mobx';
@@ -28,6 +28,8 @@ const statusName = {
   'FORBIDDEN': {status: 'default', text: '待激活'},
   'CLOSED': {status: 'default', text: '已注销'}
 }
+
+
 function BSUserList ({ listStore, userStore }) {
   const [form] = Form.useForm()
   const {
@@ -46,7 +48,7 @@ function BSUserList ({ listStore, userStore }) {
   // let roleDta = null
   // const roleDta = GetRoles(null)
   // 获取管辖区域数据
-  const areaData = GetAreas(null)
+  const areaData = GetAreas('')
   useEffect(() => {
     // listStore.setValue('account.roleList', roleDta)
     listStore.setValue('account.areaList', areaData)
@@ -62,7 +64,7 @@ function BSUserList ({ listStore, userStore }) {
   , [listStore])
 
 
-  const handleSearchChange = (e) => {
+  const handleSearchChange = (e: { target: { value: any; }; }) => {
     // console.log(e.target.value)
     listStore.setValue('searchInputValue', e.target.value)
     // pushURL()
@@ -398,7 +400,7 @@ function BSUserList ({ listStore, userStore }) {
               total={pagination.total}
               pageSize={pagination.size}
               current={pagination.index}
-              onChange={(pagination) => {
+              onChange={(pagination: { current: number; pageSize: number; }) => {
                 const {current, pageSize } = pagination
                 // 设置当前页
                 listStore.setValue('pagination.index', current);

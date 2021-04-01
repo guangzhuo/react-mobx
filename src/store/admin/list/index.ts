@@ -23,7 +23,8 @@ class ListStore {
 	@observable searchInputValue = '';
 
 	// tree和账户管理
-	@observable account = {
+	// eslint-disable-next-line max-len
+	@observable account: { showModel: boolean; modelData: {}; form: {}; level: number; modelType: string; typeTitle: string; searchForm: {}; keyword: string; orgId: number; parentId: string; treeData: any[] } = {
 		level: 0,
 		showModel: false, // 新增，编辑，删除 弹窗
 		modelData: {}, // 显示时对应的数据
@@ -33,11 +34,10 @@ class ListStore {
 		searchForm: {}, // search实例化对象form
 		treeData: [], // 初始化tree树数据
 		keyword: '', // 搜索时的val
-		orgId: undefined, // 点击树获得的id
+		orgId: 0, // 点击树获得的id
 		parentId: '', // 编辑初始化信息查询父级tree数
-
-		roleList: [], // 绑定角色数据
-		areaList: [], // 管辖区域数据
+		// roleList: [], // 绑定角色数据
+		// areaList: [], // 管辖区域数据
 	}
 
 	// 编辑或新增
@@ -49,12 +49,12 @@ class ListStore {
 	}
 
 	// common-初始化设置from
-	@action.bound setFrom (data) {
+	@action.bound setFrom (data: null) {
 		this.AddEditObser.modalFrom = data
 	}
 
 	// common-显示 编辑-新增-激活 弹窗
-	@action.bound typeShowModel (record, type) {
+	@action.bound typeShowModel (record: { level?: any; }, type: string) {
 		this.account.showModel = true // 新增，编辑，删除 弹窗
 		this.account.modelData = record // 显示时对应的数据
 		this.account.modelType = type
@@ -62,13 +62,13 @@ class ListStore {
 		// add || edit tree
 		// activatingEdit ｜｜ activating table 编辑和激活
 		if (type === 'edit') {
-			this.editInfo() // tree详情
+			// this.editInfo() // tree详情
 		}
 		if (type === 'activating') {
-			this.detailAccount()
+			// this.detailAccount()
 		}
 		if (type === 'activatingEdit') {
-			this.detailAccount()
+			// this.detailAccount()
 		}
 		switch (type) {
 			case 'add':
@@ -93,7 +93,7 @@ class ListStore {
 	}
 
 	// common-设值
-	@action.bound setValue (key, value) {
+	@action.bound setValue (key: string, value: any) {
 		setPathValue(this, key, value)
 	}
 
@@ -160,9 +160,9 @@ class ListStore {
 	// }
 
 	// tree树-搜索 value
-	@action.bound handSearch (keyword) {
-		this.keyword = keyword
-		this.getAccountTree()
+	@action.bound handSearch (keyword: any) {
+		this.account.keyword = keyword
+		// this.getAccountTree()
 	}
 
 	// tree树-新增
@@ -198,21 +198,22 @@ class ListStore {
 	// }
 
 	// tree树-搜索列表
-	@action.bound treeClick (item) {
+	@action.bound treeClick (item: { id: number; }) {
 		this.account.orgId = item.id
 		this.pagination.index = 1
-		this.getListData()
+		// this.getListData()
 	}
 
 	// tree树-清空数据
 	@action.bound clearModal () {
+		// @ts-ignore
 		const { resetFields, setFieldsValue } = this.AddEditObser.modalFrom
 		resetFields()
 		setFieldsValue({
 			name: undefined, // tree名称
 			orgName: undefined, // 所属tree名称
 			description: '', // tree描述
-			orgId: undefined,  // 所属treeID
+			orgId: 0,  // 所属treeID
 			roleId: undefined, // 绑定角色
 			userStatus: 'DISABLED', // 状态
 			areas: [] // 管理辖区
@@ -329,11 +330,12 @@ class ListStore {
 	clearValue () {
 		this.pagination.index = 1
 		this.pagination.size = 10
-		this.account.orgId = undefined
+		this.account.orgId = 0
 		this.queryData = {}
 	}
 	// 账号-搜索条件重置
 	@action.bound reset () {
+		// @ts-ignore
 		const {setFieldsValue} = this.account.searchForm
 		setFieldsValue({
 			account: undefined,
@@ -346,7 +348,7 @@ class ListStore {
 			lastModifiedTs: undefined
 		})
 		this.clearValue()
-		this.getListData()
+		// this.getListData()
 	}
 
 	// common-重置
@@ -365,7 +367,7 @@ class ListStore {
 		}
 
 		this.account = {
-			level: '',
+			level: 0,
 			showModel: false, // 新增，编辑，删除 弹窗
 			modelData: {}, // 显示时对应的数据
 			modelType: 'add', // 打开不同类型弹窗内容
@@ -374,7 +376,7 @@ class ListStore {
 			searchForm: {}, // search实例化对象form
 			treeData: [], // 初始化tree树数据
 			keyword: '', // 搜索时的val
-			orgId: '', // 点击树获得的id
+			orgId: 0, // 点击树获得的id
 			parentId: '', // 编辑初始化信息查询父级tree数
 		}
 

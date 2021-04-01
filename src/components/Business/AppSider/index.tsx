@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
-import { inject, observer } from 'mobx-react';
+import { inject, observer, IReactComponent } from 'mobx-react';
+// import {toJS} from 'mobx'
 import { Layout, Menu, Modal } from 'antd';
 // import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
 // import { withRouter } from 'react-router-dom';
@@ -8,18 +9,45 @@ import { TeamOutlined } from '@ant-design/icons';
 
 import styles from './index.module.less';
 import logo from 'images/AppSider/logo.png';
+import {MenuInfo} from 'rc-menu/lib/interface';
 
 // import * as store from "store";
 
 // const IconFont = IconfontCN();
 
-const { SubMenu } = Menu;
-const { Sider } = Layout;
+const {SubMenu} = Menu;
+const {Sider} = Layout;
 
+interface ILayStore {
+  menuStatus: boolean,
+  activeArr: any[],
+  defaultSettings: { navTheme: any }
+  // eslint-disable-next-line no-unused-vars
+  defaultHin(arg: any): () => void
+  toggleSiber(): () => void
+  toggleHideSiber(): () => void
+  // eslint-disable-next-line no-unused-vars
+  toggleShowSiber(collapsed: boolean, type: 'clickTrigger' | 'responsive'): () => void
+}
 
-const AppSider = ({layOutStore, userStore}) => {
+interface IUserStore {
+  userInfo:any
+  changeCount(): () => void
+}
+
+interface IProps {
+  layOutStore: IReactComponent & ILayStore,
+  userStore: IReactComponent & IUserStore
+}
+
+// interface IItem{
+//   key:string,
+//   userInfo:any
+// }
+
+const AppSider = ({layOutStore, userStore}: IProps) => {
   // const {layOutStore, userStore } = useContext(MobXProviderContext);
-  const { menuStatus,  defaultSettings: { navTheme }, activeArr} = layOutStore;
+  const {menuStatus, defaultSettings: {navTheme}, activeArr} = layOutStore;
   const barConfig = [
     {
       link: '/admin/list',
@@ -32,41 +60,46 @@ const AppSider = ({layOutStore, userStore}) => {
   ];
 
   useEffect(() => {
+    console.log(layOutStore)
     layOutStore.defaultHin(barConfig)
   }, [layOutStore, barConfig])
 
   // 一级菜单点击
-  const menuClick = (item) => {
-    if (Number.isFinite(parseInt(item.key, 10))) {
+  const menuClick = (item: MenuInfo) => {
+    if (Number.isFinite(parseInt(String(item.key as number), 10))) {
       Modal.error({
         title: '警告',
         content: '当前模块需进一步授权，请联系管理员，添加权限',
       });
     } else {
-      history.push(item.key);
+      history.push(item.key as string);
     }
   }
   // 二级菜单点击
-  const childMenuClick = (item) => {
+  // eslint-disable-next-line no-undef
+  const childMenuClick = (item: MenuInfo) => {
     // const { count, changeCount} = userStore;
 
-    history.push(item.key);
+    history.push(item.key as string);
     layOutStore.toggleSiber()
     userStore.changeCount()
   }
 
   // 侧边栏默认打开
   const defaultOpen = () => {
-    if (process.browser && barConfig) {
-      const activeOpenArr = []
+    if (barConfig) {
+      const activeOpenArr: string[] = []
       const defaultActive = window.location.pathname
       barConfig.forEach((item) => {
         if (item.child) {
           item.child.forEach((childItem) => {
+            // @ts-ignore
             if (childItem.link === defaultActive) {
               activeOpenArr.push(item.link)
             }
+            // @ts-ignore
             if (childItem.highlightRoute && childItem.highlightRoute.length > 0) {
+              // @ts-ignore
               childItem.highlightRoute.forEach((childHighItem) => {
                 if (childHighItem === defaultActive) {
                   activeOpenArr.push(item.link)
@@ -80,7 +113,7 @@ const AppSider = ({layOutStore, userStore}) => {
     }
   }
 
-  const renderWithAuth = (permissionKey, renderElement) =>  {
+  const renderWithAuth = (permissionKey:string, renderElement:React.ReactNode) =>  {
     const user_Permissions = userStore.userInfo.userPermission || {}
     if (!permissionKey || user_Permissions[permissionKey]) {
       return renderElement;
@@ -149,7 +182,7 @@ const AppSider = ({layOutStore, userStore}) => {
                     </span>
                   }
                 >
-                  {barItem.child.map((childItem) => {
+                  {barItem.child.map((childItem:{link:string;label:string}) => {
                     const menuItemChild = <Menu.Item
                       key={childItem.link}
                       onClick={(item) => {
@@ -161,6 +194,7 @@ const AppSider = ({layOutStore, userStore}) => {
                       <TeamOutlined  />
                       <span>{childItem.label}</span>
                     </Menu.Item>
+                    // @ts-ignore
                     return renderWithAuth(childItem.permissionKey, menuItemChild);
                   })}
 
