@@ -6,7 +6,7 @@ import { inject, observer } from 'mobx-react';
 // import { AppSider, AppHeader } from 'components'
 import { history } from 'common/util'
 const { Content } = Layout;
-
+ //
 // userStore
 const App = () => {
   const toRedirect = () =>
