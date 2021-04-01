@@ -5,7 +5,7 @@ import styles from './index.module.less';
 
 const NotFound:FC = () => (
 
-    
+
 
   <div className={styles.notFound}>
     <div className={styles.imgWrap}>
