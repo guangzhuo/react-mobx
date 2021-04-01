@@ -15,7 +15,6 @@ const App = () => {
 
 
   const renderComponent = () =>
-    // const {toHref} = userStore
     <Router history={history}>
       <Layout style={{minHeight: '100vh'}}>
         {/* <AppSider />*/}
