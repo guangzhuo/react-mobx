@@ -24,7 +24,7 @@ const App = () => {
             <Content>
               <Switch>
                 {getRoutes}
-                <Redirect exact from='/' to='/admin/list' />
+                <Redirect exact from='/' to='/not' />
               </Switch>
             </Content>
           </Layout>
