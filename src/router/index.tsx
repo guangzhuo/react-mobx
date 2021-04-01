@@ -10,7 +10,7 @@ const getRoutes = (routeArr: any[]) => (
 
 export default getRoutes([
   {
-    path: '/admin/list',
-    component: Load('admin/list')
+    path: '/not',
+    component: Load('admin/notFound')
   },
 ])

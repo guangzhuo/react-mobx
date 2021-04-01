@@ -284,7 +284,7 @@ module.exports = {
     // 禁止类成员中出现重复的名称
     'no-dupe-class-members': 2,
     // 每个模块只能使用一个import
-    'no-duplicate-imports': 2,
+    'no-duplicate-imports': 0,
     // 禁止 Symbolnew 操作符和 new 一起使用
     'no-new-symbol': 2,
     // 允许指定模块加载时的进口

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {FC} from 'react';
 // import {LockOutlined} from '@ant-design/icons';
 import notFound from 'images/notFound/notFound.png';
 import styles from './index.module.less';
 
-const NotFound = () => (
+const NotFound:FC = () => (
   <div className={styles.notFound}>
     <div className={styles.imgWrap}>
       <img src={notFound} className={styles.notImg} alt='您访问的页面未授权' />
@@ -12,9 +12,5 @@ const NotFound = () => (
 
   </div>
 );
-
-// NotFound.propTypes = {
-//
-// };
 
 export default NotFound;

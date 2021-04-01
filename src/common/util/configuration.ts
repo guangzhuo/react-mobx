@@ -1,4 +1,3 @@
-import React from 'react';
 import { createFromIconfontCN } from '@ant-design/icons';
 import { createBrowserHistory, createMemoryHistory } from 'history';
 
@@ -25,7 +24,7 @@ interface IUser{
 
 
 // 针对treeData 返回数据格式
-const treeDataFormate = (data: Array<IUser>[], fn: () => (React.ReactNode | string), saveCall: any) => {
+const treeDataFormate = (data: any, fn: any, saveCall: any) => {
   const callBack = typeof fn === 'function' ? fn : saveCall
   // @ts-ignore
   return data && data.map((item:IUser) => {
