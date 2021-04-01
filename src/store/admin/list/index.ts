@@ -1,4 +1,5 @@
 import {observable, action} from 'mobx';
+import {TValue} from 'types/type';
 import { setPathValue } from 'pathval';
 
 class ListStore {
@@ -7,7 +8,7 @@ class ListStore {
 	@observable requestLoading = false;
 
 	// common-设值
-	@action.bound setValue (key: string, value: any) {
+	@action.bound setValue (key: string, value: TValue) {
 		setPathValue(this, key, value)
 	}
 
