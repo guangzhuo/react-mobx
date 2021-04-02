@@ -20,7 +20,7 @@ declare module '*.tiff'
 //  全局
 interface Window {
   readonly opr: any
-  readonly opera: any
+  readonly opera: string
   readonly HTMLElement: any
   readonly chrome: any
   safari: any
@@ -29,7 +29,7 @@ interface Window {
 }
 
 interface Document {
-  readonly documentMode: any
+  readonly documentMode: number
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
