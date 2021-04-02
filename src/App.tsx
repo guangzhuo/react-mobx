@@ -1,22 +1,19 @@
-import React from 'react';
+import React from 'react'
 import { Switch, Redirect, Router } from 'react-router-dom'
 import getRoutes from './router'
-import { Layout } from 'antd';
-import { inject, observer } from 'mobx-react';
+import { Layout } from 'antd'
+import { inject, observer } from 'mobx-react'
 // import { AppSider, AppHeader } from 'components'
 import { history } from 'common/util'
-const { Content } = Layout;
+const { Content } = Layout
 //
 // userStore
 const App = () => {
-  const toRedirect = () =>
+  const toRedirect = () => renderComponent()
 
-    renderComponent()
-
-
-  const renderComponent = () =>
+  const renderComponent = () => (
     <Router history={history}>
-      <Layout style={{minHeight: '100vh'}}>
+      <Layout style={{ minHeight: '100vh' }}>
         {/* <AppSider />*/}
         <Layout>
           {/* <AppHeader />*/}
@@ -24,21 +21,17 @@ const App = () => {
             <Content>
               <Switch>
                 {getRoutes}
-                <Redirect exact from='/' to='/not' />
+                <Redirect exact from="/" to="/not" />
               </Switch>
             </Content>
           </Layout>
         </Layout>
       </Layout>
     </Router>
-
-
-  return (
-    <>
-      {toRedirect()}
-    </>
   )
+
+  return <>{toRedirect()}</>
 }
 
-export default inject('userStore')(observer(App));
+export default inject('userStore')(observer(App))
 // export default App;

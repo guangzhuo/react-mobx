@@ -1,4 +1,2 @@
-export * from './configuration';
-export * from './validator';
-
-
+export * from './configuration'
+export * from './validator'

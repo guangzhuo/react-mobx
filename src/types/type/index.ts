@@ -1,1 +1,1 @@
-export type TValue = string|number|boolean|undefined
+export type TValue = string | number | boolean | undefined

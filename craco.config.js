@@ -13,9 +13,9 @@ const FastRefreshCracoPlugin = require('craco-fast-refresh')
 const CracoAntDesignPlugin = require('craco-antd')
 const path = require('path')
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
-const webpack = require('webpack');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
+const webpack = require('webpack')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin')
 // const reactHotReloadPlugin = require('craco-plugin-react-hot-reload');
 // const CracoAliasPlugin = require('craco-alias')
 const SimpleProgressWebpackPlugin = require('simple-progress-webpack-plugin')
@@ -38,7 +38,6 @@ module.exports = {
     },
 
     plugins: [
-
       // webpack构建进度条
       // new WebpackBar({
       //   profile: trueDllPlugin
@@ -55,33 +54,32 @@ module.exports = {
             failOnError: true,
             allowAsyncCycles: false,
             cwd: process.cwd()
-          }),
+          })
           // webpack-dev-server 强化插件
           // new DashboardPlugin(),
           // new webpack.HotModuleReplacementPlugin()
-        ], []
+        ],
+        []
       ),
       ...when(
-        isBuildAnalyzer, () => [
+        isBuildAnalyzer,
+        () => [
           new BundleAnalyzerPlugin({
             analyzerMode: 'static', // html 文件方式输出编译分析
             openAnalyzer: false,
             reportFilename: path.resolve(__dirname, 'analyzer/index.html')
           })
-        ], []
+        ],
+        []
       ),
       new CompressionWebpackPlugin({
         filename: '[path][base].gz',
         algorithm: 'gzip',
-        test: new RegExp(
-          `\\.(${
-            ['js', 'css'].join('|')
-          })$`
-        ),
+        test: new RegExp(`\\.(${['js', 'css'].join('|')})$`),
         threshold: 1024,
         minRatio: 0.8
       }),
-       new HardSourceWebpackPlugin()
+      new HardSourceWebpackPlugin()
 
       // new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
     ],
@@ -98,12 +96,14 @@ module.exports = {
         automaticNameDelimiter: '~', // 缓存组和生成文件名称之间的连接符
         name: true,
         cacheGroups: {
-          vendors: { // 自定义打包模块
+          vendors: {
+            // 自定义打包模块
             test: /[\\/]node_modules[\\/]/,
             priority: -10, // 优先级，先打包到哪个组里面，值越大，优先级越高
             filename: 'vendors.js'
           },
-          default: { // 默认打包模块
+          default: {
+            // 默认打包模块
             priority: -20,
             reuseExistingChunk: true, // 模块嵌套引入时，判断是否复用已经被打包的模块
             filename: 'common.js'
@@ -129,15 +129,13 @@ module.exports = {
      *  - configure 能够重写 webpack 相关的所有配置，但是，仍然推荐你优先阅读 craco 提供的快捷配置，把解决不了的配置放到 configure 里解决；
      *  - 这里选择配置为函数，与直接定义 configure 对象方式互斥；
      */
-    configure: (webpackConfig, {
-      paths
-    }) => {
+    configure: (webpackConfig, { paths }) => {
       // paths.appPath='public'
       paths.appBuild = 'dist' // 配合输出打包修改文件目录
       // webpackConfig中可以解构出你想要的参数比如mode、devtool、entry等等，更多信息请查看webpackConfig.json文件
       /**
-         * 修改 output
-         */
+       * 修改 output
+       */
       webpackConfig.output = {
         ...webpackConfig.output,
         // ...{
@@ -155,8 +153,8 @@ module.exports = {
       // }
 
       /**
-         * webpack split chunks
-         */
+       * webpack split chunks
+       */
       // webpackConfig.optimization.splitChunks = {
       //   ...webpackConfig.optimization.splitChunks,
       //   ...{
@@ -167,7 +165,6 @@ module.exports = {
       // 返回重写后的新配置
       return webpackConfig
     }
-
   },
   babel: {
     presets: [
@@ -187,11 +184,15 @@ module.exports = {
     ],
     // 用来支持装饰器
     plugins: [
-      ['import', {
-        libraryName: 'antd',
-        libraryDirectory: 'lib',
-        style: true
-      }, 'antd'],
+      [
+        'import',
+        {
+          libraryName: 'antd',
+          libraryDirectory: 'lib',
+          style: true
+        },
+        'antd'
+      ],
       // 配置解析器
       ['@babel/plugin-proposal-decorators', { legacy: true }],
       ['@babel/plugin-proposal-class-properties', { loose: true }],
@@ -201,9 +202,12 @@ module.exports = {
   plugins: [
     // 热更新
     ...whenDev(
-      () => [{
-        plugin: FastRefreshCracoPlugin
-      }], []
+      () => [
+        {
+          plugin: FastRefreshCracoPlugin
+        }
+      ],
+      []
     ),
 
     {
@@ -212,7 +216,7 @@ module.exports = {
         lessLoaderOptions: {
           lessOptions: { javascriptEnabled: true }
         },
-        modifyLessRule () {
+        modifyLessRule() {
           return {
             test: /\.module\.less$/,
             exclude: /node_modules/,
@@ -235,9 +239,13 @@ module.exports = {
     // antd 主题配置
     {
       plugin: CracoAntDesignPlugin,
-      options: { customizeThemeLessPath: path.join(__dirname, 'src/theme/antd.customize.less') }
+      options: {
+        customizeThemeLessPath: path.join(
+          __dirname,
+          'src/theme/antd.customize.less'
+        )
+      }
     }
-
   ],
   devServer: {
     port: 9000,
@@ -246,7 +254,7 @@ module.exports = {
         target: 'https://XXX.com/',
         changeOrigin: true,
         secure: false,
-        xfwd: false,
+        xfwd: false
       }
     }
   }
