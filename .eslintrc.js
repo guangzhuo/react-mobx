@@ -26,7 +26,8 @@ module.exports = {
     process: true,
     qq: true,
     require: true,
-    module: true
+    module: true,
+    safari: true
   },
   parserOptions: {
     ecmaFeatures: {
