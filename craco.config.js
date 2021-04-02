@@ -16,14 +16,9 @@ const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const webpack = require('webpack')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin')
-// const reactHotReloadPlugin = require('craco-plugin-react-hot-reload');
-// const CracoAliasPlugin = require('craco-alias')
 const SimpleProgressWebpackPlugin = require('simple-progress-webpack-plugin')
 const CircularDependencyPlugin = require('circular-dependency-plugin')
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin') // 缓存用的，第二次打包和构建会极大提升速率
-// const WebpackBar = require('webpackbar')
-// const CracoAntPlugin = require('craco-antd')
-// const path = require('path')
 const pathResolve = (pathUrl) => path.join(__dirname, pathUrl)
 // 判断编译环境是否为生产
 const isBuildAnalyzer = process.env.REACT_APP_ENV === 'doc'
@@ -38,10 +33,6 @@ module.exports = {
     },
 
     plugins: [
-      // webpack构建进度条
-      // new WebpackBar({
-      //   profile: trueDllPlugin
-      // }),
       new SimpleProgressWebpackPlugin(),
       new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /zh-cn/),
       new AntdDayjsWebpackPlugin(),
@@ -55,9 +46,6 @@ module.exports = {
             allowAsyncCycles: false,
             cwd: process.cwd()
           })
-          // webpack-dev-server 强化插件
-          // new DashboardPlugin(),
-          // new webpack.HotModuleReplacementPlugin()
         ],
         []
       ),
@@ -80,8 +68,6 @@ module.exports = {
         minRatio: 0.8
       }),
       new HardSourceWebpackPlugin()
-
-      // new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
     ],
 
     // 抽离公用模块
@@ -152,16 +138,6 @@ module.exports = {
       //   'react-dom': 'ReactDOM',
       // }
 
-      /**
-       * webpack split chunks
-       */
-      // webpackConfig.optimization.splitChunks = {
-      //   ...webpackConfig.optimization.splitChunks,
-      //   ...{
-      //     chunks: 'all',
-      //     name: true
-      //   }
-      // }
       // 返回重写后的新配置
       return webpackConfig
     }
