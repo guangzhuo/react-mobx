@@ -1,4 +1,4 @@
-import { axios } from 'common/network/axios-interceptor'
+import { axios } from 'common/http/axios-interceptor'
 
 /**
  * Time：2020/11/3
