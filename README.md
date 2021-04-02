@@ -23,20 +23,20 @@
 │   │   ├── apis // 接口地址
 │   │   │   └── index.ts
 │   │   ├── hooks // 自定义hooks
-│   │   │   └── index.js
+│   │   │   └── index.ts
 │   │   ├── network // 拦截器配置
 │   │   │   └── axios-interceptor.ts
 │   │   └── util // 公用方法
-│   │       └── index.js    
+│   │       └── index.ts 
 │   ├── components 
 │   │   ├── BCZSComponents // 通用组件
 │   │   ├── Business //业务组件
 │   │   ├── UI // UI组件
 │   ├── images
-│   ├── index.js
+│   ├── index.tsx
 │   ├── pages // 业务模块
 │   ├── router
-│   │   └── index.js
+│   │   └── index.tsx
 │   ├── store // Mobx 模块
 │   └── theme // antd 主题色
 │       └── antd.customize.less
@@ -65,8 +65,13 @@ development | 开发
 test | 测试
 preissue | 预发
 production | 生产
+doc | 本地分析
 
 ## 注意事项 ！！！
+- 如果你用nvm管理node，可能会出现编辑器无法提交问题，
+  解决方案：打开项目里的.git>hook>pre-commit编辑添加：
+  `. $HOME/.nvm/nvm.sh`
+  
 - 开启eslint: 保持代码统一规范，加入了pre-commit;
 - 开发环境默认把分析目录输出到根目录下analyzer，可做分析
 - 创建less规范：**.module.less 开启css module;
