@@ -8,17 +8,19 @@
 // when, whenProd, whenTest, ESLINT_MODES, POSTCSS_MODES
 const { whenDev, when } = require('@craco/craco')
 const CracoLessPlugin = require('craco-less')
-const CracoVtkPlugin = require('craco-vtk')
+const FastRefreshCracoPlugin = require('craco-fast-refresh')
+// const CracoVtkPlugin = require('craco-vtk')
 const CracoAntDesignPlugin = require('craco-antd')
 const path = require('path')
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
 const webpack = require('webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
-// const reactHotReloadPlugin = require('craco-plugin-react-hot-reload')
+// const reactHotReloadPlugin = require('craco-plugin-react-hot-reload');
 // const CracoAliasPlugin = require('craco-alias')
 const SimpleProgressWebpackPlugin = require('simple-progress-webpack-plugin')
 const CircularDependencyPlugin = require('circular-dependency-plugin')
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin') // 缓存用的，第二次打包和构建会极大提升速率
 // const WebpackBar = require('webpackbar')
 // const CracoAntPlugin = require('craco-antd')
 // const path = require('path')
@@ -78,7 +80,8 @@ module.exports = {
         ),
         threshold: 1024,
         minRatio: 0.8
-      })
+      }),
+       new HardSourceWebpackPlugin()
 
       // new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
     ],
@@ -199,7 +202,7 @@ module.exports = {
     // 热更新
     ...whenDev(
       () => [{
-        plugin: CracoVtkPlugin()
+        plugin: FastRefreshCracoPlugin
       }], []
     ),
 
