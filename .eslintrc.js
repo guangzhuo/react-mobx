@@ -2,11 +2,13 @@ module.exports = {
   'parser': '@typescript-eslint/parser',
   'env': {
     'browser': true,
-    'es6': true
+    'es6': true,
+    'node': true
   },
   'extends': [
+    'plugin:@typescript-eslint/recommended',
     'eslint:recommended',
-    'plugin:react/recommended'
+    // 'plugin:react/recommended'
   ],
   'globals': {
     'Atomics': 'readonly',
@@ -371,6 +373,11 @@ module.exports = {
       'extensions': ['.js', '.jsx', 'tsx']
     }],
     // 禁止未使用的变量
-    'no-unused-vars': 1,
+    'no-unused-vars': 0,
+    '@typescript-eslint/no-unused-vars': 2,
+    // 有没有返回值
+    '@typescript-eslint/explicit-module-boundary-types': 0,
+    // any
+    '@typescript-eslint/no-explicit-any': 0
   }
 };

@@ -24,7 +24,7 @@ const CircularDependencyPlugin = require('circular-dependency-plugin')
 // const path = require('path')
 const pathResolve = (pathUrl) => path.join(__dirname, pathUrl)
 // 判断编译环境是否为生产
-const isBuildAnalyzer = process.env.REACT_APP_ENV === 'development'
+const isBuildAnalyzer = process.env.REACT_APP_ENV === 'doc'
 // 自定义主题
 module.exports = {
   webpack: {

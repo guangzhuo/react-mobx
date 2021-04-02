@@ -26,7 +26,6 @@ interface IUser{
 // 针对treeData 返回数据格式
 const treeDataFormate = (data: any, fn: any, saveCall: any) => {
   const callBack = typeof fn === 'function' ? fn : saveCall
-  // @ts-ignore
   return data && data.map((item:IUser) => {
     item.key = item.id;
     item.title = callBack ? callBack(item) : `${item.name}`;
