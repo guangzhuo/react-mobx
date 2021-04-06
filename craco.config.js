@@ -18,10 +18,11 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin')
 const SimpleProgressWebpackPlugin = require('simple-progress-webpack-plugin')
 const CircularDependencyPlugin = require('circular-dependency-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin') // 缓存用的，第二次打包和构建会极大提升速率
 const pathResolve = (pathUrl) => path.join(__dirname, pathUrl)
 // 判断编译环境是否为生产
-const isBuildAnalyzer = process.env.REACT_APP_ENV === 'doc'
+const isDocAnalyzer = process.env.REACT_APP_ENV === 'doc'
 // 自定义主题
 module.exports = {
   webpack: {
@@ -50,7 +51,7 @@ module.exports = {
         []
       ),
       ...when(
-        isBuildAnalyzer,
+        isDocAnalyzer,
         () => [
           new BundleAnalyzerPlugin({
             analyzerMode: 'static', // html 文件方式输出编译分析
@@ -67,7 +68,21 @@ module.exports = {
         threshold: 1024,
         minRatio: 0.8
       }),
-      new HardSourceWebpackPlugin()
+      new HardSourceWebpackPlugin(),
+      new TerserPlugin({
+        sourceMap: true, // Must be set to true if using source-maps in production
+        terserOptions: {
+          ecma: undefined,
+          warnings: false,
+          parse: {},
+          compress: {
+            drop_console: process.env.NODE_ENV === 'production', // 生产环境下移除控制台所有的内容
+            drop_debugger: false, // 移除断点
+            pure_funcs:
+              process.env.NODE_ENV === 'production' ? ['console.log'] : '' // 生产环境下移除console
+          }
+        }
+      })
     ],
 
     // 抽离公用模块
@@ -95,8 +110,9 @@ module.exports = {
             filename: 'common.js'
           }
         }
-      },
-      UglifyJsPlugin: {
+      }
+
+      /* UglifyJsPlugin: {
         // 删除注释
         output: {
           comments: false
@@ -107,7 +123,7 @@ module.exports = {
           drop_debugger: true,
           drop_console: true // 不打印log
         }
-      }
+      }*/
     },
 
     /**
