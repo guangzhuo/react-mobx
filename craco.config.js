@@ -23,6 +23,15 @@ const HardSourceWebpackPlugin = require('hard-source-webpack-plugin') // 缓存�
 const pathResolve = (pathUrl) => path.join(__dirname, pathUrl)
 // 判断编译环境是否为生产
 const isDocAnalyzer = process.env.REACT_APP_ENV === 'doc'
+// 代理地址
+const url = {
+  development: 'https://a.com/',
+  test: 'https://b.com/',
+  preissue: 'https://c.com/',
+  production: 'https://d.com/'
+}
+const proxyURL = url[process.env.REACT_APP_ENV]
+console.log(proxyURL)
 // 自定义主题
 module.exports = {
   webpack: {
@@ -243,7 +252,7 @@ module.exports = {
     port: 9000,
     proxy: {
       '/api': {
-        target: 'https://XXX.com/',
+        target: proxyURL,
         changeOrigin: true,
         secure: false,
         xfwd: false
