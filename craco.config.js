@@ -31,7 +31,6 @@ const url = {
   production: 'https://d.com/'
 }
 const proxyURL = url[process.env.REACT_APP_ENV]
-console.log(proxyURL)
 // 自定义主题
 module.exports = {
   webpack: {

@@ -71,23 +71,25 @@ doc | 本地分析
 - 如果你用nvm管理node，可能会出现编辑器无法提交问题，
   解决方案：打开项目里的.git>hook>pre-commit编辑添加：
   `. $HOME/.nvm/nvm.sh`
-  
+- 引入组件或方法可直接基于src下直接引入:如 import XXX from 'common/util'  
 - 开启eslint: 保持代码统一规范，加入了pre-commit;
-- 开发环境默认把分析目录输出到根目录下analyzer，可做分析
+- doc环境默认把分析目录输出到根目录下analyzer，可做分析
+- 原则上不要直接在组件上书写style;  
 - 创建less规范：**.module.less 开启css module;
+- 关于主题颜色 圆角等 统一继承'~theme/antd.customize.less';
 - 书写组件：保持大写开头，如：Modal;
 - store: 保持逻辑层 尽量统一到Mobx处理;
 - page: 页面展示层;
 
 
 ## 默认添加包
-> 1. pathval 
+> 1. pathval(可操作对象赋值)
 ```javascript
   setPathValue(this, path, value);
   setPathValue('obj.A', 'B')
 ```
 
-> 2. query-string
+> 2. query-string(格式化对象)
 ```javascript
   const queryString = require('query-string');
 
@@ -117,7 +119,7 @@ console.log(location.search);
 //=> '?foo=unicorn&ilike=pizza'
 ```
 
-> 3. react-loadable
+> 3. react-loadable(懒加载)
 ```javascript
 
 import Loadable from 'react-loadable'
@@ -131,13 +133,13 @@ const Load = (component) => Loadable({
 	}
 })
 ```
-> 4. uuid
+> 4. uuid(唯一Key)
 ```javascript
 import { v4 as uuidv4 } from 'uuid';
 uuidv4(); // ⇨ '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d'
 ```
 
-> 5. crypto-js
+> 5. crypto-js(加密)
 ```javascript
 
 import sha256 from 'crypto-js/sha256';
