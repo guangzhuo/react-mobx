@@ -41,11 +41,15 @@
   },
   "scripts": {
     "start": "cross-env REACT_APP_ENV=development craco start",
+    "start:test": "cross-env REACT_APP_ENV=test craco start",
+    "start:pre": "cross-env REACT_APP_ENV=preissue craco start",
+
     "build:dev": "cross-env REACT_APP_ENV=development craco build",
     "build:test": "cross-env REACT_APP_ENV=test craco build",
     "build:pre": "cross-env REACT_APP_ENV=preissue GENERATE_SOURCEMAP=false craco build",
     "build:pro": "cross-env REACT_APP_ENV=production GENERATE_SOURCEMAP=false craco build",
     "build:doc": "cross-env REACT_APP_ENV=doc GENERATE_SOURCEMAP=false craco build",
+
     "test": "cross-env REACT_APP_ENV=test craco test",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .js --ext .tsx --ext .jsx --ext .ts src"

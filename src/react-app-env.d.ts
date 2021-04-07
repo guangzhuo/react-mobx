@@ -6,6 +6,7 @@ declare namespace NodeJS {
       [key: string]: string | undefined
       NODE_ENV: string
       PUBLIC_URL: string
+      REACT_APP_ENV: string
     }
   }
 }
