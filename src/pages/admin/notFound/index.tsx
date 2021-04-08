@@ -23,12 +23,16 @@ const NotFound: FC<IFc> = ({ userStore }: IFc) => {
   console.log(name)
   useEffect(() => {
     userStore.login()
+    userStore.login()
+    userStore.login()
+    userStore.login()
   }, [])
 
   return (
     <div className={styles.notFound}>
       <div className={styles.imgWrap}>
         <img
+          onClick={() => userStore.login()}
           src={notFound}
           className={styles.notImg}
           alt="您访问的页面未授权"

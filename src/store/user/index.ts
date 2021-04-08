@@ -18,11 +18,10 @@ class UseStore {
 
   // demo-请求
   @action.bound login() {
-    this.setValue('userInfo.name', '123')
-    APIS.login()
+    APIS.getTest()
       .then(
         action('login', (rs) => {
-          console.log(rs)
+          console.log('Store Test 1111111', rs)
           message.success('编辑成功')
         })
       )

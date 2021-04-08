@@ -25,12 +25,13 @@ const pathResolve = (pathUrl) => path.join(__dirname, pathUrl)
 const isDocAnalyzer = process.env.REACT_APP_ENV === 'doc'
 // 代理地址
 const url = {
-  development: 'https://a.com/',
+  development: 'http://daily.api.beicaizs.com/compliance/',
   test: 'https://b.com/',
   preissue: 'https://c.com/',
   production: 'https://d.com/'
 }
 const proxyURL = url[process.env.REACT_APP_ENV]
+console.log(proxyURL)
 // 自定义主题
 module.exports = {
   webpack: {
@@ -247,6 +248,7 @@ module.exports = {
       }
     }
   ],
+
   devServer: {
     port: 9000,
     proxy: {

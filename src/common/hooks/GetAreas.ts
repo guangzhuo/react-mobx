@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react'
 import { message } from 'antd'
 import * as APIS from 'common/apis'
 
-const GetAreas = (dep: string) => {
-  const [areaData, setAreaData] = useState(null)
-
+const GetAreas = (dep: any[]) => {
+  const [areaData, setAreaData] = useState('')
+  // ded
   useEffect(() => {
-    APIS.getAreas()
+    // 测试
+    APIS.getTest()
       .then((res) => {
         const { content } = res.data.data
         setAreaData(content)
@@ -16,7 +17,7 @@ const GetAreas = (dep: string) => {
           message.error(error.response.data.message)
         }
       })
-  }, [dep])
+  }, dep)
   return areaData
 }
 

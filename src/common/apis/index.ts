@@ -6,5 +6,6 @@ import { axios } from 'common/http/axios-interceptor'
  * */
 // 登录模块
 export const login = () => axios.get('/api/login/demo')
+
 // test
-export const getAreas = () => axios.get('/api/areas/demo')
+export const getTest = () => axios.get('/app/column/details/1515')
