@@ -79,6 +79,7 @@ doc | 本地分析
 - 关于主题颜色 圆角等 统一继承'~theme/antd.customize.less';
 - 书写组件：保持大写开头，如：Modal;
 - store: 保持逻辑层 尽量统一到Mobx处理;
+- 关于新增+修改+查询业务按钮时添加loadding防止频繁请求；  
 - page: 页面展示层;
 
 
