@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosRequestConfig } from 'axios'
 // import { getPathValue } from 'pathval';
 // import queryString from 'query-string';
 // import uuidv4 from 'uuid/v4';
@@ -13,14 +13,14 @@ const ie11 = /(trident)\/([\d.]+)/
 const b = u.match(ie11) // 判断ie11
 const CancelToken = axios.CancelToken
 let requestQueue: {
-  url: string
+  url: string | undefined
   data: string
   params: string
   method: any
 }[] = []
 
 // 请求拦截调用
-function handleRequest(config: any) {
+function handleRequest(config: AxiosRequestConfig) {
   // console.log('33333', config)
   // 提取四个参数用于区分相同的请求
   const { url, method, data = {}, params = {} } = config
@@ -77,11 +77,6 @@ ins.interceptors.request.use(
         axiosConfig.params['randomDate'] = Math.random()
       } else {
         axiosConfig.url = `${axiosConfig.url}?randomDate=${Math.random()}`
-        // if (axiosConfig.url?.includes('?')) {
-        //   axiosConfig.url = `${axiosConfig.url}&randomDate=${Math.random()}`
-        // } else {
-        //   axiosConfig.url = `${axiosConfig.url}?randomDate=${Math.random()}`
-        // }
       }
     }
     return axiosConfig
