@@ -23,6 +23,8 @@ const HardSourceWebpackPlugin = require('hard-source-webpack-plugin') // 缓存�
 const pathResolve = (pathUrl) => path.join(__dirname, pathUrl)
 // 判断编译环境是否为生产
 const isDocAnalyzer = process.env.REACT_APP_ENV === 'doc'
+// 不是开发环境
+const isNoDev = process.env.REACT_APP_ENV !== 'development'
 // 代理地址
 const url = {
   development: 'http://daily.api.beicaizs.com/compliance/',
@@ -46,7 +48,22 @@ module.exports = {
       new SimpleProgressWebpackPlugin(),
       new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /zh-cn/),
       new AntdDayjsWebpackPlugin(),
-      // // 新增模块循环依赖检测插件
+      new HardSourceWebpackPlugin(),
+      new TerserPlugin({
+        sourceMap: true, // Must be set to true if using source-maps in production
+        terserOptions: {
+          ecma: undefined,
+          warnings: false,
+          parse: {},
+          compress: {
+            drop_console: process.env.NODE_ENV === 'production', // 生产环境下移除控制台所有的内容
+            drop_debugger: false, // 移除断点
+            pure_funcs:
+              process.env.NODE_ENV === 'production' ? ['console.log'] : '' // 生产环境下移除console
+          }
+        }
+      }),
+      // 新增模块循环依赖检测插件
       ...whenDev(
         () => [
           new CircularDependencyPlugin({
@@ -70,39 +87,30 @@ module.exports = {
         ],
         []
       ),
-      new CompressionWebpackPlugin({
-        filename: '[path][base].gz',
-        algorithm: 'gzip',
-        test: new RegExp(`\\.(${['js', 'css'].join('|')})$`),
-        threshold: 1024,
-        minRatio: 0.8
-      }),
-      new HardSourceWebpackPlugin(),
-      new TerserPlugin({
-        sourceMap: true, // Must be set to true if using source-maps in production
-        terserOptions: {
-          ecma: undefined,
-          warnings: false,
-          parse: {},
-          compress: {
-            drop_console: process.env.NODE_ENV === 'production', // 生产环境下移除控制台所有的内容
-            drop_debugger: false, // 移除断点
-            pure_funcs:
-              process.env.NODE_ENV === 'production' ? ['console.log'] : '' // 生产环境下移除console
-          }
-        }
-      })
+      ...when(
+        isNoDev,
+        () => [
+          new CompressionWebpackPlugin({
+            filename: '[path][base].gz',
+            algorithm: 'gzip',
+            test: new RegExp(`\\.(${['js', 'css'].join('|')})$`),
+            threshold: 1024,
+            minRatio: 0.8
+          })
+        ],
+        []
+      )
     ],
 
     // 抽离公用模块
     optimization: {
       splitChunks: {
-        chunks: 'all', // async异步代码分割 initial同步代码分割 all同步异步分割都开启
-        minSize: 3000, // 字节 引入的文件大于30kb才进行分割
+        chunks: 'async', // async异步代码分割 initial同步代码分割 all同步异步分割都开启
+        minSize: 20000, // 字节 引入的文件大于200kb才进行分割
         // maxSize: 50000,         //50kb，尝试将大于50kb的文件拆分成n个50kb的文件
         minChunks: 1, // 模块至少使用次数
-        maxAsyncRequests: 5, // 同时加载的模块数量最多是5个，只分割出同时引入的前5个文件
-        maxInitialRequests: 3, // 首页加载的时候引入的文件最多3个
+        maxAsyncRequests: 30, // 同时加载的模块数量最多是30个，只分割出同时引入的前30个文件
+        maxInitialRequests: 30, // 首页加载的时候引入的文件最多30个
         automaticNameDelimiter: '~', // 缓存组和生成文件名称之间的连接符
         name: true,
         cacheGroups: {
@@ -114,25 +122,13 @@ module.exports = {
           },
           default: {
             // 默认打包模块
+            minChunks: 2, // 模块至少使用次数
             priority: -20,
             reuseExistingChunk: true, // 模块嵌套引入时，判断是否复用已经被打包的模块
             filename: 'common.js'
           }
         }
       }
-
-      /* UglifyJsPlugin: {
-        // 删除注释
-        output: {
-          comments: false
-        },
-        // 删除console debugger 删除警告
-        compress: {
-          warnings: false,
-          drop_debugger: true,
-          drop_console: true // 不打印log
-        }
-      }*/
     },
 
     /**
