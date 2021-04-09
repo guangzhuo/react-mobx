@@ -40,15 +40,18 @@
     "webpackbar": "5.0.0-3"
   },
   "scripts": {
-    "start": "cross-env REACT_APP_ENV=development nodemon -w craco.config.js -w ./theme/antd.customize.less --exec 'craco start'",
-    "start:test": "cross-env REACT_APP_ENV=test nodemon -w craco.config.js -w ./theme/antd.customize.less --exec 'craco start'",
-    "start:pre": "cross-env REACT_APP_ENV=preissue nodemon -w craco.config.js -w ./theme/antd.customize.less --exec 'craco start'",
+    "nM": "nodemon -w craco.config.js -w ./theme/antd.customize.less --exec craco start",
+    "setBuild": "GENERATE_SOURCEMAP=false craco build",
 
-    "build:dev": "cross-env REACT_APP_ENV=development GENERATE_SOURCEMAP=false craco build",
-    "build:test": "cross-env REACT_APP_ENV=test GENERATE_SOURCEMAP=false craco build",
-    "build:pre": "cross-env REACT_APP_ENV=preissue GENERATE_SOURCEMAP=false craco build",
-    "build:pro": "cross-env REACT_APP_ENV=production GENERATE_SOURCEMAP=false craco build",
-    "build:doc": "cross-env REACT_APP_ENV=doc GENERATE_SOURCEMAP=false craco build",
+    "start": "cross-env REACT_APP_ENV=development && npm run nM",
+    "start:test": "cross-env REACT_APP_ENV=test && npm run nM",
+    "start:pre": "cross-env REACT_APP_ENV=preissue && npm run nM",
+
+    "build:dev": "cross-env REACT_APP_ENV=development && npm run setBuild",
+    "build:test": "cross-env REACT_APP_ENV=test && npm run setBuild",
+    "build:pre": "cross-env REACT_APP_ENV=preissue && npm run setBuild",
+    "build:pro": "cross-env REACT_APP_ENV=production && npm run setBuild",
+    "build:doc": "cross-env REACT_APP_ENV=doc && npm run setBuild",
     "test": "cross-env REACT_APP_ENV=test craco test",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .ts --ext .tsx --ext .jsx --ext .js src"
