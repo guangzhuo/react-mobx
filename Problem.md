@@ -1,6 +1,6 @@
 ### 问题记录
 
- - create-react-app启动报（webpack或其他插件）版本错误
+ - create-react-app启动报（webpack或其他插件）版本错误， 如图：
 
     ![avatar](https://user-gold-cdn.xitu.io/2020/5/14/1721136309dc9625?imageView2/0/w/1280/h/960/format/webp/ignore-error/1)
 
