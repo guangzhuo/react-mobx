@@ -43,9 +43,9 @@
     "nM": "nodemon -w craco.config.js -w ./theme/antd.customize.less --exec craco start",
     "setBuild": "GENERATE_SOURCEMAP=false craco build",
 
-    "start": "cross-env REACT_APP_ENV=development && npm run nM",
-    "start:test": "cross-env REACT_APP_ENV=test && npm run nM",
-    "start:pre": "cross-env REACT_APP_ENV=preissue && npm run nM",
+    "start": "cross-env REACT_APP_ENV=development nodemon -w craco.config.js -w ./theme/antd.customize.less --exec craco start",
+    "start:test": "cross-env REACT_APP_ENV=test nodemon -w craco.config.js -w ./theme/antd.customize.less --exec craco start",
+    "start:pre": "cross-env REACT_APP_ENV=preissue nodemon -w craco.config.js -w ./theme/antd.customize.less --exec craco start",
 
     "build:dev": "cross-env REACT_APP_ENV=development && npm run setBuild",
     "build:test": "cross-env REACT_APP_ENV=test && npm run setBuild",

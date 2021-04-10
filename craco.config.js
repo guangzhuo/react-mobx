@@ -32,8 +32,9 @@ const url = {
   preissue: 'https://c.com/',
   production: 'https://d.com/'
 }
+
 const proxyURL = url[process.env.REACT_APP_ENV]
-console.log(proxyURL)
+console.log('Brower-env-----------------------', process.env.REACT_APP_ENV)
 // 自定义主题
 module.exports = {
   webpack: {
