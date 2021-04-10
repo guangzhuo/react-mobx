@@ -1,8 +1,7 @@
-// import { XMLHttpRequestResponseType } from 'typescript'
 import { createFromIconfontCN } from '@ant-design/icons'
 import moment from 'moment'
 import { createBrowserHistory, createMemoryHistory } from 'history'
-
+// import XMLHttpRequestResponseType from 'typescript/lib/lib.dom.d'
 interface IUser {
   children?: any
   id?: string
@@ -13,17 +12,27 @@ interface IUser {
   // children?: Array<T>[]
 }
 
-// 阿里矢量图地址配置
+/**
+ *
+ * @constructor 阿里矢量图地址配置
+ */
 const IconfontCN = () =>
   createFromIconfontCN({
     scriptUrl: 'xxxx.js'
   })
 
-// history 用于判断走web还是node
+/**
+ * history 用于判断走web还是node
+ */
 const history =
   typeof window !== 'undefined' ? createBrowserHistory() : createMemoryHistory()
 
-// 针对treeData 返回数据格式
+/**
+ * 针对treeData 返回数据格式
+ * @param data 原始数据
+ * @param fn reactNode
+ * @param saveCall 存储下一次数据或函数
+ */
 const treeDataFormate = (data: any, fn: any, saveCall: any) => {
   const callBack = typeof fn === 'function' ? fn : saveCall
   return (
@@ -45,11 +54,11 @@ const treeDataFormate = (data: any, fn: any, saveCall: any) => {
   )
 }
 
-/*
- * 根据后端返回的pdf文件的地址，下载pdf文件
- *  url 完整的路径
- *  fileName 文件名
- * type 文件类型，如.pdf
+/**
+ *
+ * @param url 根据后端返回的pdf文件的地址
+ * @param fileName 文件名
+ * @param type 文件类型，如.pdf
  */
 const downFile = (url: string, fileName: string, type: string) => {
   let reg = /^([hH][tT]{2}[pP]:\/\/|[hH][tT]{2}[pP][sS]:\/\/)(([A-Za-z0-9-~]+).)+([A-Za-z0-9-~/])+$/
@@ -71,8 +80,9 @@ const downFile = (url: string, fileName: string, type: string) => {
   }
 }
 
+// string | XMLHttpRequestResponseType
 const downloadExportFile = (
-  blob: string | XMLHttpRequestResponseType,
+  blob: any,
   tagFileName: string,
   fileType: string
 ) => {
@@ -97,6 +107,9 @@ const downloadExportFile = (
   }
 }
 
+/**
+ * 全局config 配置
+ */
 const config = {
   development: {
     url: 'https://a.com/'

@@ -1,3 +1,8 @@
+<!-- 
+"description"：基础搭建
+"author": GZ
+"version": "0.1.0"
+-->
 # 目录结构
 ```
 ├── .eslintrc.js //eslint 配置
