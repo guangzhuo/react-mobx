@@ -9,7 +9,7 @@
 const { whenDev, when } = require('@craco/craco')
 const CracoLessPlugin = require('craco-less')
 const FastRefreshCracoPlugin = require('craco-fast-refresh')
-// const CracoVtkPlugin = require('craco-vtk')
+const CracoVtkPlugin = require('craco-vtk')
 const CracoAntDesignPlugin = require('craco-antd')
 const path = require('path')
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
@@ -103,6 +103,8 @@ module.exports = {
       )
     ],
 
+    sourceMap: true,
+
     // 抽离公用模块
     optimization: {
       splitChunks: {
@@ -141,6 +143,8 @@ module.exports = {
       // paths.appPath='public'
       paths.appBuild = 'dist' // 配合输出打包修改文件目录
       // webpackConfig中可以解构出你想要的参数比如mode、devtool、entry等等，更多信息请查看webpackConfig.json文件
+      webpackConfig.devtool = 'eval-cheap-module-source-map'
+
       /**
        * 修改 output
        */
@@ -203,6 +207,9 @@ module.exports = {
       () => [
         {
           plugin: FastRefreshCracoPlugin
+        },
+        {
+          plugin: CracoVtkPlugin()
         }
       ],
       []
@@ -231,7 +238,8 @@ module.exports = {
               { loader: 'less-loader' }
             ]
           }
-        }
+        },
+        sourceMap: true
       }
     },
     // antd 主题配置

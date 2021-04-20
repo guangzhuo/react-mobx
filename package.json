@@ -18,6 +18,7 @@
     "core-js": "3.7.0",
     "craco-antd": "1.18.1",
     "craco-less": "1.17.1",
+    "craco-vtk": "1.0.2",
     "cross-env": "7.0.2",
     "crypto-js": "4.0.0",
     "dayjs": "1.10.4",
@@ -42,11 +43,9 @@
   "scripts": {
     "nM": "nodemon -w craco.config.js -w ./theme/antd.customize.less --exec craco start",
     "setBuild": "GENERATE_SOURCEMAP=false craco build",
-
-    "start": "cross-env REACT_APP_ENV=development nodemon -w craco.config.js -w ./theme/antd.customize.less --exec craco start",
+    "start": "cross-env REACT_APP_ENV=development GENERATE_SOURCEMAP=true nodemon -w craco.config.js -w ./theme/antd.customize.less --exec craco start",
     "start:test": "cross-env REACT_APP_ENV=test nodemon -w craco.config.js -w ./theme/antd.customize.less --exec craco start",
     "start:pre": "cross-env REACT_APP_ENV=preissue nodemon -w craco.config.js -w ./theme/antd.customize.less --exec craco start",
-
     "build:dev": "cross-env REACT_APP_ENV=development && npm run setBuild",
     "build:test": "cross-env REACT_APP_ENV=test && npm run setBuild",
     "build:pre": "cross-env REACT_APP_ENV=preissue && npm run setBuild",
@@ -101,6 +100,7 @@
     "nodemon": "^2.0.7",
     "pre-commit": "1.2.2",
     "prettier": "2.2.1",
+    "react-quill": "^1.3.5",
     "terser-webpack-plugin": "^4.2.3",
     "typescript": "4.2.3",
     "webpack-bundle-analyzer": "4.4.0"

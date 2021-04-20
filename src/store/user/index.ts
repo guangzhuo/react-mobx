@@ -11,6 +11,9 @@ class UseStore {
     name: '12'
   }
 
+  @observable
+  quillEditor = null
+
   // 赋值
   @action.bound setValue(path: string, value: TValue) {
     setPathValue(this, path, value)

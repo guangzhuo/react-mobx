@@ -9,5 +9,9 @@ export default getRoutes([
   {
     path: '/not',
     component: Load('admin/notFound')
+  },
+  {
+    path: '/test',
+    component: Load('test')
   }
 ])
