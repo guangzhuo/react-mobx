@@ -34,7 +34,7 @@ const url = {
 }
 
 const proxyURL = url[process.env.REACT_APP_ENV]
-console.log('Brower-env-----------------------', process.env.REACT_APP_ENV)
+console.log('Broswer-env-----------------------', process.env.REACT_APP_ENV)
 // 自定义主题
 module.exports = {
   webpack: {
@@ -143,7 +143,12 @@ module.exports = {
       // paths.appPath='public'
       paths.appBuild = 'dist' // 配合输出打包修改文件目录
       // webpackConfig中可以解构出你想要的参数比如mode、devtool、entry等等，更多信息请查看webpackConfig.json文件
-      webpackConfig.devtool = 'eval-cheap-module-source-map'
+      // cheap-module-source-map -没有列映射的SourceMap，可将加载程序源映射简化为每行一个映射。
+      // eval-cheap-module-source-map-与相似eval-cheap-source-map，但是，在这种情况下，将处理来自加载程序的源地图以获得更好的结果。但是，Loader Source Maps简化为每行一个映射。
+      webpackConfig.devtool =
+        process.env.REACT_APP_ENV === 'development'
+          ? 'eval-cheap-module-source-map'
+          : 'cheap-module-source-map'
 
       /**
        * 修改 output

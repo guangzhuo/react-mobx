@@ -43,7 +43,7 @@
   "scripts": {
     "nM": "nodemon -w craco.config.js -w ./theme/antd.customize.less --exec craco start",
     "setBuild": "GENERATE_SOURCEMAP=false craco build",
-    "start": "cross-env REACT_APP_ENV=development GENERATE_SOURCEMAP=true nodemon -w craco.config.js -w ./theme/antd.customize.less --exec craco start",
+    "start": "cross-env REACT_APP_ENV=development craco start",
     "start:test": "cross-env REACT_APP_ENV=test nodemon -w craco.config.js -w ./theme/antd.customize.less --exec craco start",
     "start:pre": "cross-env REACT_APP_ENV=preissue nodemon -w craco.config.js -w ./theme/antd.customize.less --exec craco start",
     "build:dev": "cross-env REACT_APP_ENV=development && npm run setBuild",
