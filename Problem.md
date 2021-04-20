@@ -15,4 +15,10 @@
      >  3.在项目根目录创建一个 .env 文件，然后添加以下代码：SKIP_PREFLIGHT_check = true (不推荐)
 
 
- 
+ - npm 7中引入的一项新功能是自动安装peer dependencies。在npm的之前版本（4-6）中，peer dependencies冲突会有版本不兼容的警告，但仍会安装依赖并不会抛出错误。在npm 7中，如果存在无法自动解决的依赖冲突，将会阻止安装
+
+    > Fix the upstream dependency conflict, or retry this command with --force, or --legacy-peer-deps to accept an incorrect (and potentially broken) dependency resolution.
+   > 
+    > 解决方案：
+   > 
+    > npm i XXX --legacy-peer-deps
