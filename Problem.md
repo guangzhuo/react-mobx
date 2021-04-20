@@ -22,3 +22,5 @@
     > 解决方案：
    > 
     > npm i XXX --legacy-peer-deps
+   > 
+    > 说明：--legacy-peer-deps：安装时忽略所有peerDependencies，其样式为npm版本4到版本6 
