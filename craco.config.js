@@ -148,7 +148,7 @@ module.exports = {
       webpackConfig.devtool =
         process.env.REACT_APP_ENV === 'development'
           ? 'eval-cheap-module-source-map'
-          : 'cheap-module-source-map'
+          : 'none'
 
       /**
        * 修改 output
