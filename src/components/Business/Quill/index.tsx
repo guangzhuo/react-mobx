@@ -77,15 +77,13 @@ const Quill: FC<IFc> = ({ userStore }: IFc) => {
       formData.append('quill-image', file)
       console.log('3333333', quillEditor)
       // const res = await uploadFile(formData)
-      // const range = quillEditor.getSelection()
-      const range = {
-        index: 0
-      }
+      const range = quillEditor.getSelection()
+
       // const link = res.data[0].url
       // this part the image is inserted
       // by 'image' option below, you just have to put src(link) of img here.
       quillEditor.insertEmbed(
-        range.index,
+        range.index + 1,
         'image',
         'https://image-static.segmentfault.com/383/303/3833030929-5ffd15fc110ab'
       )

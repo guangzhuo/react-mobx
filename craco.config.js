@@ -8,7 +8,6 @@
 // when, whenProd, whenTest, ESLINT_MODES, POSTCSS_MODES
 const { whenDev, when } = require('@craco/craco')
 const CracoLessPlugin = require('craco-less')
-const FastRefreshCracoPlugin = require('craco-fast-refresh')
 const CracoVtkPlugin = require('craco-vtk')
 const CracoAntDesignPlugin = require('craco-antd')
 const path = require('path')
@@ -210,9 +209,6 @@ module.exports = {
     // 热更新
     ...whenDev(
       () => [
-        {
-          plugin: FastRefreshCracoPlugin
-        },
         {
           plugin: CracoVtkPlugin()
         }

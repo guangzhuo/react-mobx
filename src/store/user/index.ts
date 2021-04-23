@@ -21,6 +21,7 @@ class UseStore {
 
   // demo-请求
   @action.bound login() {
+    console.log('33333')
     APIS.getTest()
       .then(
         action('login', (rs) => {

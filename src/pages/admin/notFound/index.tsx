@@ -16,7 +16,7 @@ interface IFc {
   userStore: IReactComponent & IUserinfo
 }
 const NotFound: FC<IFc> = ({ userStore }: IFc) => {
-  const { userInfo } = userStore
+  const { userInfo, login } = userStore
   const { id, name } = userInfo
   console.log(id)
   console.log(name)
@@ -32,7 +32,7 @@ const NotFound: FC<IFc> = ({ userStore }: IFc) => {
       <div className={styles.imgWrap}>
         (
         <img
-          onClick={() => userStore.login()}
+          onClick={() => login()}
           src={notFound}
           className={styles.notImg}
           alt="您访问的页面未授权"
