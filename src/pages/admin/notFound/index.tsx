@@ -21,10 +21,7 @@ const NotFound: FC<IFc> = ({ userStore }: IFc) => {
   console.log(id)
   console.log(name)
   useEffect(() => {
-    userStore.login()
-    userStore.login()
-    userStore.login()
-    userStore.login()
+    userStore?.login()
   }, [])
 
   return (

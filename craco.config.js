@@ -21,12 +21,12 @@ const TerserPlugin = require('terser-webpack-plugin')
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin') // 缓存用的，第二次打包和构建会极大提升速率
 const pathResolve = (pathUrl) => path.join(__dirname, pathUrl)
 // 判断编译环境是否为生产
-const isDocAnalyzer = process.env.REACT_APP_ENV === 'doc'
+const isDocAnalyzer = process.env.Analyzer === 'doc'
 // 不是开发环境
 const isNoDev = process.env.REACT_APP_ENV !== 'development'
 // 代理地址
 const url = {
-  development: 'http://daily.api.beicaizs.com/compliance/',
+  development: 'http://development.api.xxxxx.com/api/',
   test: 'https://b.com/',
   preissue: 'https://c.com/',
   production: 'https://d.com/'
@@ -106,8 +106,6 @@ module.exports = {
       )
     ],
 
-    sourceMap: true,
-
     // 抽离公用模块
     optimization: {
       splitChunks: {
@@ -151,7 +149,7 @@ module.exports = {
       webpackConfig.devtool =
         process.env.REACT_APP_ENV === 'development'
           ? 'eval-cheap-module-source-map'
-          : 'none'
+          : 'source-map'
 
       /**
        * 修改 output
@@ -176,7 +174,8 @@ module.exports = {
       return webpackConfig
     }
   },
-  babel: {
+
+  /* babel: {
     presets: [
       [
         '@babel/preset-env',
@@ -208,7 +207,7 @@ module.exports = {
       ['@babel/plugin-proposal-class-properties', { loose: true }],
       ['babel-plugin-styled-components', { displayName: true }]
     ]
-  },
+  },*/
   plugins: [
     // 热更新
     ...whenDev(
