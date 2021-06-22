@@ -1,4 +1,4 @@
-import userStore from './user'
+import UserStore from './user'
 import listStore from './admin/list'
 
-export { userStore, listStore }
+export { UserStore, listStore }

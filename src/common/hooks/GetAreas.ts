@@ -7,7 +7,7 @@ const GetAreas = (dep: any[]) => {
   // ded
   useEffect(() => {
     // 测试
-    APIS.getTest()
+    APIS.login()
       .then((res) => {
         const { content } = res.data.data
         setAreaData(content)

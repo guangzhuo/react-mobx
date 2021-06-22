@@ -5,11 +5,11 @@ import Quill from 'components/Business/Quill'
 // import styles from './index.module.less'
 
 interface IFc {
-  userStore: IReactComponent
+  UserStore: IReactComponent
 }
 
-const Index: FC<IFc> = ({ userStore }: IFc) => {
-  console.log(userStore)
+const Index: FC<IFc> = ({ UserStore }: IFc) => {
+  console.log(UserStore)
   useEffect(() => {
     console.log(1)
   }, [])
@@ -21,4 +21,4 @@ const Index: FC<IFc> = ({ userStore }: IFc) => {
   )
 }
 
-export default inject('userStore')(observer(Index))
+export default inject('UserStore')(observer(Index))

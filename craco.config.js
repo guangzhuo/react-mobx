@@ -26,7 +26,7 @@ const isDocAnalyzer = process.env.Analyzer === 'doc'
 const isNoDev = process.env.REACT_APP_ENV !== 'development'
 // 代理地址
 const url = {
-  development: 'http://development.api.xxxxx.com/api/',
+  development: 'https://suggest.taobao.com/',
   test: 'https://b.com/',
   preissue: 'https://c.com/',
   production: 'https://d.com/'
@@ -34,10 +34,6 @@ const url = {
 
 const proxyURL = url[process.env.REACT_APP_ENV]
 console.log('Broswer-env-----------------------', process.env.REACT_APP_ENV)
-console.log(
-  'REACT_APP_BASE_URL-----------------------',
-  process.env.REACT_APP_BASE_URL
-)
 // 自定义主题
 module.exports = {
   webpack: {
@@ -149,7 +145,7 @@ module.exports = {
       webpackConfig.devtool =
         process.env.REACT_APP_ENV === 'development'
           ? 'eval-cheap-module-source-map'
-          : 'source-map'
+          : 'none'
 
       /**
        * 修改 output
@@ -242,8 +238,7 @@ module.exports = {
               { loader: 'less-loader' }
             ]
           }
-        },
-        sourceMap: true
+        }
       }
     },
     // antd 主题配置
@@ -261,7 +256,7 @@ module.exports = {
   devServer: {
     port: 9000,
     proxy: {
-      '/api': {
+      '/sug': {
         target: proxyURL,
         changeOrigin: true,
         secure: false,

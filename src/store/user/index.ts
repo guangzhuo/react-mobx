@@ -22,7 +22,12 @@ class UseStore {
   // demo-请求
   @action.bound login() {
     console.log('33333')
-    APIS.getTest()
+    const t = {
+      code: 'utf-8',
+      q: '商品',
+      callback: 'cb'
+    }
+    APIS.getTest(t)
       .then(
         action('login', (rs) => {
           console.log('Store Test 1111111', rs)

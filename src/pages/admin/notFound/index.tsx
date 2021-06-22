@@ -13,15 +13,15 @@ interface IUserinfo {
 }
 
 interface IFc {
-  userStore: IReactComponent & IUserinfo
+  UserStore: IReactComponent & IUserinfo
 }
-const NotFound: FC<IFc> = ({ userStore }: IFc) => {
-  const { userInfo, login } = userStore
+const NotFound: FC<IFc> = ({ UserStore }: IFc) => {
+  const { userInfo, login } = UserStore
   const { id, name } = userInfo
   console.log(id)
   console.log(name)
   useEffect(() => {
-    userStore?.login()
+    UserStore?.login()
   }, [])
 
   return (
@@ -40,4 +40,4 @@ const NotFound: FC<IFc> = ({ userStore }: IFc) => {
   )
 }
 
-export default inject('userStore')(observer(NotFound))
+export default inject('UserStore')(observer(NotFound))

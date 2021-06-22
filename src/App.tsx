@@ -7,7 +7,7 @@ import { inject, observer } from 'mobx-react'
 import { history } from 'common/util'
 const { Content } = Layout
 //
-// userStore
+// UserStore
 const App = () => {
   const toRedirect = () => renderComponent()
 
@@ -33,5 +33,5 @@ const App = () => {
   return <>{toRedirect()}</>
 }
 
-export default inject('userStore')(observer(App))
+export default inject('UserStore')(observer(App))
 // export default App;

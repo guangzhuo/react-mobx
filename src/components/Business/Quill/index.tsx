@@ -13,14 +13,14 @@ interface IStore {
   setValue: (quillEditor1: string, editor: any) => any
 }
 interface IFc {
-  userStore?: IReactComponent & IStore
+  UserStore?: IReactComponent & IStore
 }
-const Quill: FC<IFc> = ({ userStore }: IFc) => {
+const Quill: FC<IFc> = ({ UserStore }: IFc) => {
   const [value, setValue] = useState('')
   // const [quillEditor, setQuillEditor] = useState<any>()
   const quillRef = useRef<any>()
 
-  console.log(userStore)
+  console.log(UserStore)
   console.log(setValue)
   const toolbarContainer = [
     [{ size: ['small', false, 'large', 'huge'] }], // custom dropdown
@@ -65,13 +65,13 @@ const Quill: FC<IFc> = ({ userStore }: IFc) => {
     const { getEditor } = quillRef.current
     // this.quillEditor = getEditor()
     // setQuillEditor(getEditor())
-    userStore?.setValue('quillEditor', getEditor())
+    UserStore?.setValue('quillEditor', getEditor())
     const input: any = document.createElement('input')
     input.setAttribute('type', 'file')
     input.setAttribute('accept', 'image/*')
     input.click()
     input.onchange = async () => {
-      const { quillEditor } = userStore as IStore
+      const { quillEditor } = UserStore as IStore
       const file = input.files[0]
       const formData = new FormData()
       formData.append('quill-image', file)
@@ -114,4 +114,4 @@ const Quill: FC<IFc> = ({ userStore }: IFc) => {
   )
 }
 
-export default inject('userStore')(observer(Quill))
+export default inject('UserStore')(observer(Quill))

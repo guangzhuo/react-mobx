@@ -8,4 +8,5 @@ import { axios } from 'common/http/axios-interceptor'
 export const login = () => axios.get('/api/login/demo')
 
 // test
-export const getTest = () => axios.get('/app/column/details/1515')
+export const getTest = <T>(params: T): Promise<Array<T>> =>
+  axios.get('/sug', { params })
