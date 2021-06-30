@@ -4,7 +4,7 @@ import { message } from 'antd'
 import { TValue } from 'types/type'
 import * as APIS from 'common/apis'
 
-class UseStore {
+class UserStore {
   // 用户信息
   @observable userInfo = {
     id: 0,
@@ -44,4 +44,4 @@ class UseStore {
   }
 }
 
-export default new UseStore()
+export default new UserStore()
