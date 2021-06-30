@@ -1,6 +1,7 @@
 import React, { FC, useEffect } from 'react'
 // import {LockOutlined} from '@ant-design/icons';
 import { inject, observer, IReactComponent } from 'mobx-react'
+import { history } from 'common/util'
 import notFound from 'images/notFound/notFound.png'
 import styles from './index.module.less'
 
@@ -15,8 +16,9 @@ interface IUserinfo {
 interface IFc {
   UserStore: IReactComponent & IUserinfo
 }
+// 测试组件
 const NotFound: FC<IFc> = ({ UserStore }: IFc) => {
-  const { userInfo, login } = UserStore
+  const { userInfo } = UserStore
   const { id, name } = userInfo
   console.log(id)
   console.log(name)
@@ -24,12 +26,16 @@ const NotFound: FC<IFc> = ({ UserStore }: IFc) => {
     UserStore?.login()
   }, [])
 
+  const goTest = () => {
+    history.push('/test')
+  }
+
   return (
     <div className={styles.notFound}>
       <div className={styles.imgWrap}>
         (
         <img
-          onClick={() => login()}
+          onClick={() => goTest()}
           src={notFound}
           className={styles.notImg}
           alt="您访问的页面未授权"

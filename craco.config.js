@@ -206,14 +206,14 @@ module.exports = {
   },*/
   plugins: [
     // 热更新
-    ...whenDev(
-      () => [
-        {
-          plugin: CracoVtkPlugin()
-        }
-      ],
-      []
-    ),
+    // ...whenDev(
+    //   () => [
+    //     {
+    //       plugin: CracoVtkPlugin()
+    //     }
+    //   ],
+    //   []
+    // ),
 
     {
       plugin: CracoLessPlugin,
